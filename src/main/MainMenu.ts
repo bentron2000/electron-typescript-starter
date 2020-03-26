@@ -164,7 +164,7 @@ export const getDefaultMenuTemplate = (
 
   if (process.platform === 'darwin') {
     template.unshift({
-      label: electronOrRemote.app.getName(),
+      label: electronOrRemote.app.name,
       submenu: [
         { role: 'about' },
         { type: 'separator' },

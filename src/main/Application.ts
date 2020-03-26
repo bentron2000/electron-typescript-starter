@@ -19,7 +19,7 @@
 import { app, dialog, Menu } from 'electron'
 
 import { LOUPE_PROTOCOL } from '../constants'
-import { Updater } from './Updater'
+// import { Updater } from './Updater'
 import { WindowManager } from './WindowManager'
 import { getDefaultMenuTemplate } from './MainMenu'
 
@@ -27,7 +27,7 @@ export class Application {
   public static sharedApplication = new Application()
 
   private windowManager = new WindowManager()
-  private updater = new Updater(this.windowManager)
+  // private updater = new Updater(this.windowManager)
 
   // All files opened while app is loading will be stored on this array and opened when app is ready
   // @ts-ignore
@@ -66,7 +66,7 @@ export class Application {
 
   public destroy() {
     this.removeAppListeners()
-    this.updater.destroy()
+    // this.updater.destroy()
     this.windowManager.closeAllWindows()
   }
 
@@ -115,19 +115,19 @@ export class Application {
         })
         // Check for updates, every time the contents has loaded
         window.webContents.on('did-finish-load', () => {
-          this.updater.checkForUpdates(true)
+          // this.updater.checkForUpdates(true)
         })
-        this.updater.addListeningWindow(window)
+        // this.updater.addListeningWindow(window)
         window.once('close', () => {
-          this.updater.removeListeningWindow(window)
+          // this.updater.removeListeningWindow(window)
         })
       })
     }
   }
 
-  public checkForUpdates() {
-    this.updater.checkForUpdates()
-  }
+  // public checkForUpdates() {
+  //   this.updater.checkForUpdates()
+  // }
 
   private addAppListeners() {
     app.addListener('ready', this.onReady)
@@ -165,7 +165,7 @@ export class Application {
   }
 
   private registerProtocols() {
-    console.log('registerProtocols()')
+    console.log('Registering Protocols')
     this.registerProtocol(LOUPE_PROTOCOL)
   }
 
@@ -187,6 +187,10 @@ export class Application {
   /**
    * This is called when another instance of the app is started on Windows or Linux
    */
+
+  // WE CAN PROBABLY HANDLE THIS MORE SIMPLY UNTIL SUCH TIME THAT WE NEED TO POTENTIALLY RUN
+  // MULTIPLE INSTANCES OF THE APP - SAY DIFFERENT PROJECTS IN TWO WINDOWS
+
   private onInstanceStarted = async (
     event: Event,
     argv: string[],

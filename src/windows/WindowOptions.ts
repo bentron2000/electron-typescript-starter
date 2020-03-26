@@ -18,7 +18,7 @@
 
 import qs from 'querystring'
 
-import { IGreetingWindowProps, WindowProps } from './WindowProps'
+import { ISplashWindowProps, WindowProps } from './WindowProps'
 
 export type WindowType = 'greeting'
 
@@ -32,7 +32,7 @@ interface IWindowOptions {
 
 export interface IGreetingWindowOptions extends IWindowOptions {
   type: 'greeting'
-  props: IGreetingWindowProps
+  props: ISplashWindowProps
 }
 
 export type WindowOptions = IGreetingWindowOptions
