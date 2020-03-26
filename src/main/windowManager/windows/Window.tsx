@@ -17,8 +17,8 @@ export interface IWindow {
 
 import { SplashWindow } from './SplashWindow'
 import { UIWindow } from './UIWindow'
-import { DBWindow } from './DBWindow'
-import { APMWindow } from './APMWindow'
+// import { DBWindow } from './DBWindow'
+// import { APMWindow } from './APMWindow'
 
 export interface IWindowConstructorOptions
   extends Partial<Electron.BrowserWindowConstructorOptions> {
@@ -28,14 +28,14 @@ export interface IWindowConstructorOptions
 export function getWindowClass(type: WindowType): IWindow {
   // We're using calls to require here, to prevent loading anything that does not
   // relate to the specific window being loaded.
-  if (type === 'greeting') {
+  if (type === 'splash') {
     return SplashWindow
   } else if (type === 'ui-window') {
     return UIWindow
-  } else if (type === 'db-window') {
-    return DBWindow
-  } else if (type === 'apm-window') {
-    return APMWindow
+    // } else if (type === 'db-window') {
+    //   return DBWindow
+    // } else if (type === 'apm-window') {
+    //   return APMWindow
   } else {
     throw new Error(`Unexpected window type: ${type}`)
   }

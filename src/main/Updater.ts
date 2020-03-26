@@ -1,7 +1,7 @@
 import electron from 'electron'
 import { autoUpdater, UpdateInfo } from 'electron-updater'
 
-import { WindowManager } from './WindowManager'
+import { WindowManager } from './windowManager/WindowManager'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 

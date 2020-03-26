@@ -3,8 +3,8 @@
 
 import ElectronStore from 'electron-store'
 
-import { IWindowConstructorOptions } from './windows/Window'
-import { WindowType } from './windows/WindowOptions'
+import { IWindowConstructorOptions } from './main/windowManager/windows/Window'
+import { WindowType } from './main/windowManager/windows/WindowOptions'
 
 type RemovalCallback = () => void
 

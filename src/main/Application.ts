@@ -20,7 +20,7 @@ import { app, dialog, Menu } from 'electron'
 
 import { LOUPE_PROTOCOL } from '../constants'
 // import { Updater } from './Updater'
-import { WindowManager } from './WindowManager'
+import { WindowManager } from './windowManager/WindowManager'
 import { getDefaultMenuTemplate } from './MainMenu'
 
 export class Application {
@@ -31,7 +31,7 @@ export class Application {
 
   // All files opened while app is loading will be stored on this array and opened when app is ready
   // @ts-ignore
-  private delayedRealmOpens: string[] = []
+  // private delayedRealmOpens: string[] = []
 
   // All urls opened while app is loading will be stored in this array and opened when app is ready
   // @ts-ignore
@@ -96,9 +96,9 @@ export class Application {
   //   }
   // }
 
-  public showGreeting(): Promise<void> {
+  public showSplash(): Promise<void> {
     const { window, existing } = this.windowManager.createWindow({
-      type: 'greeting',
+      type: 'splash',
       props: {},
     })
 
@@ -113,14 +113,35 @@ export class Application {
           window.show()
           resolve()
         })
-        // Check for updates, every time the contents has loaded
-        window.webContents.on('did-finish-load', () => {
-          // this.updater.checkForUpdates(true)
+      })
+    }
+  }
+
+  public showUIWindow(): Promise<void> {
+    const { window, existing } = this.windowManager.createWindow({
+      type: 'ui-window',
+      props: {},
+    })
+
+    if (existing) {
+      window.focus()
+      return Promise.resolve()
+    } else {
+      return new Promise(resolve => {
+        // Save this for later
+        // Show the window, the first time its ready-to-show
+        window.once('ready-to-show', () => {
+          window.show()
+          resolve()
         })
-        // this.updater.addListeningWindow(window)
-        window.once('close', () => {
-          // this.updater.removeListeningWindow(window)
-        })
+        // // Check for updates, every time the contents has loaded
+        // // window.webContents.on('did-finish-load', () => {
+        // //   // this.updater.checkForUpdates(true)
+        // // })
+        // // this.updater.addListeningWindow(window)
+        // window.once('close', () => {
+        //   // this.updater.removeListeningWindow(window)
+        // })
       })
     }
   }
@@ -145,14 +166,15 @@ export class Application {
     this.setDefaultMenu()
     if (this.windowManager.windows.length === 0) {
       // Wait for the greeting window to show - if no other windows are open
-      await this.showGreeting()
+      await this.showSplash()
+      await this.showUIWindow()
     }
     this.performDelayedTasks()
   }
 
   private onActivate = () => {
     if (this.windowManager.windows.length === 0) {
-      this.showGreeting()
+      // this.showSplash()
     }
   }
 
@@ -197,7 +219,7 @@ export class Application {
     workingDirectory: string
   ) => {
     this.processArguments(argv)
-    await this.showGreeting()
+    await this.showSplash()
     this.performDelayedTasks()
   }
 
@@ -208,12 +230,10 @@ export class Application {
   }
 
   private processArguments(argv: string[]) {
-    this.delayedRealmOpens = argv.filter(arg => {
-      return arg.endsWith('.realm')
-    })
-    this.delayedUrlOpens = argv.filter(arg => {
-      return arg.startsWith(`${LOUPE_PROTOCOL}://`)
-    })
+    // this.delayedRealmOpens = argv.filter(arg => arg.endsWith('.realm'))
+    this.delayedUrlOpens = argv.filter(arg =>
+      arg.startsWith(`${LOUPE_PROTOCOL}://`)
+    )
   }
 
   private async performDelayedTasks() {

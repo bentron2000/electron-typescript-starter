@@ -21,7 +21,7 @@ import electron from 'electron'
 import fs from 'fs-extra'
 import { resolve } from 'path'
 
-import { getWindowOptions } from '../windows/WindowOptions'
+import { getWindowOptions } from '../main/windowManager/windows/WindowOptions'
 
 const app = electron.app || electron.remote.app
 const userDataPath = app.getPath('userData')
@@ -45,6 +45,7 @@ export function changeRendererProcessDirectory() {
   // Determine the window type from the options passed in through the window.location
   const options = getWindowOptions()
   const type = options.type || 'unknown'
+  console.log('This windows options: ' + type)
   return changeProcessDirectory(`renderer-${type}`)
 }
 

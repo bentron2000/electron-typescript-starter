@@ -1,17 +1,17 @@
 import { IWindow } from './Window'
 
-export const APMWindow: IWindow = {
+export const DBWindow: IWindow = {
   getWindowOptions: props => {
     return {
-      title: 'APMWindow',
+      title: 'DBWindow',
       width: 900,
       height: 600,
     }
   },
   getComponent: () =>
-    import('../components/APMProcessWindow').then(
+    import('../../../components/WindowRoots/DBProcessWindow').then(
       // TODO: Fix the props for this to include a type
-      m => m.APMProcessWindow as any
+      m => m.DBProcessWindow as any
     ),
   getTrackedProperties: () => ({}),
 }

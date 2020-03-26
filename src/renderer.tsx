@@ -13,7 +13,7 @@ process.env.REALM_DISABLE_ANALYTICS = 'true'
 
 // import '../styles/index.scss';
 
-import { renderCurrentWindow } from './windows/WindowComponent'
+import { renderCurrentWindow } from './main/windowManager/windows/WindowComponent'
 
 const appElement = document.getElementById('app')
 
@@ -30,9 +30,10 @@ if (!isDevelopment) {
 
   // Hot Module Replacement API
   if (module.hot) {
-    module.hot.accept('./windows/Window', () => {
+    module.hot.accept('./main/windowManager/windows/Window', () => {
       // tslint:disable-next-line:no-var-requires no-require-imports
-      const nextGetWindow = require('./windows/Window').getWindow
+      const nextGetWindow = require('./main/windowManager/windows/Window')
+        .getWindow
       const nextWindow = nextGetWindow()
       // Render the updated window
       ReactDOM.render(<AppContainer>{nextWindow}</AppContainer>, appElement)

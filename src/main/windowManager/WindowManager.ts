@@ -3,13 +3,13 @@ import { BrowserWindow, screen, shell } from 'electron'
 import path from 'path'
 import url from 'url'
 
-import { store } from '../store'
+import { store } from '../../store'
 import {
   getSingletonKey,
   getWindowOptions,
   IWindowConstructorOptions,
-} from '../windows/Window'
-import { WindowOptions, WindowType } from '../windows/WindowOptions'
+} from './windows/Window'
+import { WindowOptions, WindowType } from './windows/WindowOptions'
 
 export interface IEventListenerCallbacks {
   blur?: () => void
@@ -28,9 +28,9 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 function getRendererHtmlPath() {
   const indexPath = isDevelopment
     ? // tslint:disable-next-line:no-var-requires no-require-imports
-      require('../../static/index.development.html')
+      require('../../../static/index.development.html')
     : // tslint:disable-next-line:no-var-requires no-require-imports
-      require('../../static/index.html')
+      require('../../../static/index.html')
   // __dirname is the directory of the bundle
   return path.resolve(__dirname, indexPath)
 }

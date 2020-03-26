@@ -1,11 +1,9 @@
 import { createStore, createTypedHooks, State } from 'easy-peasy'
 import model, { LoupeModel, config } from './state'
 
-const typedHooks = createTypedHooks<LoupeModel>()
-
-const useStoreActions = typedHooks.useStoreActions
-const useStoreDispatch = typedHooks.useStoreDispatch
-const useStoreState = typedHooks.useStoreState
+const { useStoreActions, useStoreDispatch, useStoreState } = createTypedHooks<
+  LoupeModel
+>()
 
 const store = createStore(model, config)
 

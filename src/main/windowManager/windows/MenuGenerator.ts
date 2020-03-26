@@ -18,7 +18,7 @@
 
 import { MenuItemConstructorOptions, remote } from 'electron'
 
-import { getDefaultMenuTemplate } from '../main/MainMenu'
+import { getDefaultMenuTemplate } from '../../../main/MainMenu'
 
 // TODO: Throw if this is called from the main process
 
