@@ -1,3 +1,6 @@
+// tslint:disable-next-line
+require('module-alias/register')
+
 import electron from 'electron'
 import React from 'react'
 import ReactDOM from 'react-dom'

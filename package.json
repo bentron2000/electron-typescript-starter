@@ -136,6 +136,15 @@
       "npm run check:package-lock --"
     ]
   },
+  "_moduleAliases": {
+    "@redux": "./src/redux",
+    "@models": "./src/models",
+    "@backend": "./src/backend",
+    "@components": "./src/components",
+    "@helpers": "./src/helpers",
+    "@utils": "./src/utils",
+    "@static": "./static"
+  },
   "dependencies": {
     "@types/mocha": "7.0.2",
     "contentful": "^7.14.0",
@@ -143,6 +152,7 @@
     "electron-store": "^2.0.0",
     "electron-updater": "4.0.6",
     "fs-extra": "^8.1.0",
+    "module-alias": "^2.2.2",
     "moment": "^2.24.0",
     "node-sass": "4.13.1",
     "react": "^16.13.0",

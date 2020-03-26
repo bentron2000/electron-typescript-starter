@@ -8,25 +8,32 @@
     "jsx": "react",
     "sourceMap": true,
     "baseUrl": ".",
+    "rootDir": ".",
     "strict": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "downlevelIteration": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@redux": ["src/redux"],
+      "@redux/*": ["src/redux/*"],
+      "@models": ["src/models"],
+      "@models/*": ["src/models/*"],
+      "@backend": ["src/backend"],
+      "@backend/*": ["src/backend/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@helpers": ["src/helpers"],
+      "@helpers/*": ["src/helpers/*"],
+      "@utils": ["src/utils"],
+      "@utils/*": ["src/utils/*"],
+      "@static": ["static"],
+      "@static/*": ["static/*"]
+    }
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist"
-  ],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "build", "dist"],
   "awesomeTypescriptLoaderOptions": {
-    "reportFiles": [
-      "src/**/*.{ts,tsx}"
-    ]
+    "reportFiles": ["src/**/*.{ts,tsx}"]
   }
 }

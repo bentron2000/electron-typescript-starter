@@ -1,14 +1,14 @@
-const { CheckerPlugin } = require('awesome-typescript-loader');
-const { resolve } = require('path');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
-const webpack = require('webpack');
+const { CheckerPlugin } = require('awesome-typescript-loader')
+const { resolve } = require('path')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
+const webpack = require('webpack')
 // const SentryPlugin = require('@sentry/webpack-plugin');
 
-const package = require('../package.json');
+const package = require('../package.json')
 
 module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development';
+  const isDevelopment = argv.mode === 'development'
 
   return {
     devtool: isDevelopment ? 'inline-source-map' : 'source-map',
@@ -24,11 +24,11 @@ module.exports = (env, argv) => {
       }),
     ],
     module: {
-      rules: []
+      rules: [],
     },
     node: {
       // This will make __dirname equal the bundles path
-      __dirname: false
+      __dirname: false,
     },
     output: {
       path: resolve(__dirname, '../build'),
@@ -41,29 +41,40 @@ module.exports = (env, argv) => {
           isDevelopment ? 'development' : 'production'
         ),
       }),
-    ].concat(isDevelopment ? [
-      // Cache chunks
-      new HardSourceWebpackPlugin(),
-      // Plugins for development
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-    ] : [
-        // new SentryPlugin({
-        //   release: `${package.name}@${package.version}`,
-        //   include: './build',
-        //   ignore: ['node_modules', 'webpack.config.js'],
-        //   configFile: resolve(__dirname, 'sentry.properties'),
-        //   ext: ['map', 'js'],
-        //   urlPrefix: '~/build/',
-        //   dryRun: !process.env.SENTRY_AUTH_TOKEN,
-        // }),
-      ]),
+    ].concat(
+      isDevelopment
+        ? [
+            // Cache chunks
+            new HardSourceWebpackPlugin(),
+            // Plugins for development
+            new webpack.NamedModulesPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
+          ]
+        : [
+            // new SentryPlugin({
+            //   release: `${package.name}@${package.version}`,
+            //   include: './build',
+            //   ignore: ['node_modules', 'webpack.config.js'],
+            //   configFile: resolve(__dirname, 'sentry.properties'),
+            //   ext: ['map', 'js'],
+            //   urlPrefix: '~/build/',
+            //   dryRun: !process.env.SENTRY_AUTH_TOKEN,
+            // }),
+          ]
+    ),
     resolve: {
       alias: {
         'realm-studio-styles': resolve(__dirname, '../styles'),
         'realm-studio-svgs': resolve(__dirname, '../static/svgs'),
+        '@redux': resolve(__dirname, '../src/redux'),
+        '@models': resolve(__dirname, '../src/models'),
+        '@backend': resolve(__dirname, '../src/backend'),
+        '@components': resolve(__dirname, '../src/components'),
+        '@helpers': resolve(__dirname, '../src/helpers'),
+        '@utils': resolve(__dirname, '../src/utils'),
+        '@static': resolve(__dirname, '../static'),
       },
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.html', '.scss', '.svg'],
     },
-  };
-};
+  }
+}
