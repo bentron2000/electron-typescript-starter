@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Box, Flex, Text, Icon } from '../../shared'
 import { theme } from '../Theme/theme'
 
-//Styled Components
+// Styled Components
 
 const ButtonContainer = styled.button<DropButton>`
   background-color: ${theme.sectionGreyDarker};
@@ -72,7 +72,7 @@ export interface DropButton {
   square?: boolean
 }
 
-//Render
+// Render
 
 export const DropButton = (props: DropButton) => {
   return (

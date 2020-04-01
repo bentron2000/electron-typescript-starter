@@ -64,7 +64,7 @@ export const createMockData = (db: Realm) => {
     team1.projects.push(project1)
 
     // STAGES
-    //eCommerce Project
+    // eCommerce Project
     const st1p1: StageEntity = db.create( 'Stage', { id: 'p1st1', name: 'Project Setup', type: 'Brief Stage', sectionPermissions: [], project: [], mediaStates: [], inputsAllowed: true, inputs: [], outputsAllowed: true, outputs: [], diagramConfig: '{"x":100,"y":0}', subscriptions: [] }, true )
     const st2p1: StageEntity = db.create( 'Stage', { id: 'p1st2', name: 'Shoot', type: 'Shoot Stage', sectionPermissions: [], project: [], mediaStates: [], inputsAllowed: true, inputs: [], outputsAllowed: true, outputs: [], diagramConfig: '{"x":100,"y":200}', subscriptions: [] }, true )
     const st3p1: StageEntity = db.create( 'Stage', { id: 'p1st3', name: 'Select', type: 'Select Stage', sectionPermissions: [], project: [], mediaStates: [], inputsAllowed: true, inputs: [], outputsAllowed: true, outputs: [], diagramConfig: '{"x":100,"y":400}', subscriptions: [] }, true )
