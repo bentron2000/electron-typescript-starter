@@ -1,0 +1,51 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, radios, color } from '@storybook/addon-knobs'
+
+import { Heading } from './Heading'
+
+storiesOf('Loupe Typography', module).add(
+  'Loupe Heading component',
+  () => {
+    const headingSizes = {
+      XLarge: 'xlarge',
+      Large: 'large',
+      Medium: 'medium',
+      Small: 'small',
+    }
+
+    const headingColour = color('Heading Colour', 'black')
+    const previewText = text(
+      'Preview Text',
+      'The quick brown fox jumps over the lazy dog.'
+    )
+    const headingSizeSelector = radios('Heading Size', headingSizes, `large`)
+    const props: any = {}
+
+    if (headingSizeSelector === 'xlarge') {
+      props.xlarge = true
+    }
+    if (headingSizeSelector === 'medium') {
+      props.medium = true
+    }
+    if (headingSizeSelector === 'large') {
+      props.large = true
+    }
+    if (headingSizeSelector === 'small') {
+      props.small = true
+    }
+    if (headingColour !== '') {
+      props.color = headingColour
+    }
+
+    return (
+      <div style={{ padding: '16px' }}>
+        <Heading {...props} color={headingColour}>
+          {previewText}
+        </Heading>
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

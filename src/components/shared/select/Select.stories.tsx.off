@@ -1,0 +1,54 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, select, boolean } from '@storybook/addon-knobs'
+
+// import styled from 'styled-components'
+import { Select } from './Select'
+
+storiesOf('Loupe Select', module).add(
+  'Loupe Select component',
+  () => {
+    const selectLabel = text('Select Label', 'Select Label')
+    const selectDefault = text('Select Default', 'Select Default')
+    const iconList = [
+      'message',
+      'envelope',
+      'right-arrow',
+      'workflow',
+      'assets',
+      'brief',
+      'tree',
+      'menu-right',
+      'menu-left'
+    ]
+
+    const iconSelector = select('Icon', iconList, `message`)
+
+    const showLabel = boolean('Label Shown?', false)
+
+    const props: any = {}
+
+    if (showLabel) {
+      props.showLabel = true
+    }
+
+    return (
+      <div style={{ background: 'grey', height: 'auto', padding: '16px' }}>
+        <Select
+          {...props}
+          icon={iconSelector}
+          label={selectLabel}
+          default={selectDefault}
+        >
+          <option value='1'>One</option>
+          <option value='2'>Two</option>
+          <option value='3'>Three</option>
+          <option value='4'>Four</option>
+          <option value='5'>Five</option>
+        </Select>
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

@@ -1,0 +1,36 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { radios } from '@storybook/addon-knobs'
+
+import { TabButton } from './TabButton'
+
+storiesOf('Loupe Tab Button', module).add(
+  'Tab Buttons as perspective panel',
+  () => {
+    const activeSelect = {
+      brief: 'brief',
+      tree: 'tree',
+      workflow: 'workflow',
+      assets: 'assets',
+    }
+    const isActive = radios('Active Tab', activeSelect, 'brief')
+
+    const propsArray = Object.keys(activeSelect).map(perspective => {
+      const prop: any = {}
+      prop.icon = perspective
+      if (isActive === perspective) {
+        prop.isActive = true
+      }
+      return prop
+    })
+
+    return (
+      <div>
+        {propsArray.map(props => {
+          return <TabButton key={props.icon} {...props} />
+        })}
+      </div>
+    )
+  }
+)

@@ -1,0 +1,47 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, radios, color } from '@storybook/addon-knobs'
+
+import { Text } from './Text'
+
+storiesOf('Loupe Typography', module).add(
+  'Loupe Text component',
+  () => {
+    const textSizes = {
+      Body: 'body',
+      Small: 'small',
+      Subtitle: 'subtitle',
+    }
+
+    const textColour = color('Text Colour', 'black')
+    const previewText = text(
+      'Preview Text',
+      'The quick brown fox jumps over the lazy dog.'
+    )
+    const textSizeSelector = radios('Text Size', textSizes, `body`)
+    const props: any = {}
+
+    if (textSizeSelector === 'body') {
+      props.body = true
+    }
+    if (textSizeSelector === 'small') {
+      props.small = true
+    }
+    if (textSizeSelector === 'subtitle') {
+      props.subtitle = true
+    }
+    if (textColour !== '') {
+      props.color = textColour
+    }
+
+    return (
+      <div style={{ padding: '16px' }}>
+        <Text {...props} color={textColour}>
+          {previewText}
+        </Text>
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

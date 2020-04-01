@@ -1,0 +1,61 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, boolean } from '@storybook/addon-knobs'
+
+import styled from 'styled-components'
+import { Accordion } from './Accordion'
+
+storiesOf('Loupe Accordion', module).add('Loupe accordion component', () => {
+  const Tc = styled.span`
+    font-size: 9em;
+  `
+
+  const Tw = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `
+
+  const items = [
+    {
+      title: text('Item 1 Title', 'Loupe Tree'),
+      content: (
+        <Tw>
+          <Tc role='img'>🌲</Tc>
+        </Tw>
+      )
+    },
+    {
+      title: text('Item 2 Title', 'Brief Information'),
+      content: (
+        <Tw>
+          <Tc role='img'>ℹ️</Tc>
+        </Tw>
+      )
+    },
+    {
+      title: text('Item 3 Title', 'Comments'),
+      content: (
+        <Tw>
+          <Tc>✍️</Tc>
+        </Tw>
+      )
+    },
+    {
+      title: text('Item 4 Title', 'Repositories'),
+      content: (
+        <Tw>
+          <Tc>📕</Tc>
+        </Tw>
+      )
+    }
+  ]
+
+  return (
+    <div>
+      <Accordion items={items} allowMultiple={boolean('allowMultiple', true)} />
+    </div>
+  )
+})

@@ -1,0 +1,5 @@
+export { ContentPanelSwitch } from './ContentPanelSwitch'
+export { RightPanelSwitch } from './RightPanelSwitch'
+export { ProjectPanelSwitch } from './ProjectPanelSwitch'
+export { PerspectivePanelSwitch } from './PerspectivePanelSwitch'
+export { ActionPanelSwitch } from './ActionPanelSwitch'

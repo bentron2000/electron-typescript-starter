@@ -1,0 +1,53 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, radios, boolean, color } from '@storybook/addon-knobs'
+
+import { Avatar } from './Avatar'
+import { theme } from '../Theme/theme'
+
+storiesOf('Loupe Avatar', module).add(
+  'Loupe Avatar component',
+  () => {
+    const avatarSizes = {
+      Large: 'large',
+      Medium: '',
+      Small: 'small',
+    }
+
+    const avatarColour = color('Avatar Colour', theme.primary)
+    const avatarName = text('Avatar Acronym', 'Sam Dunt')
+    const notificationCount = text('Notification Count', '')
+    const imageSource = text('Image Source', '')
+    const avatarSizeSelector = radios('Avatar Size', avatarSizes, ``)
+    const isSquare = boolean('Square?', false)
+
+    const props: any = {}
+
+    if (isSquare) {
+      props.square = true
+    }
+    if (avatarSizeSelector === 'large') {
+      props.large = true
+    }
+    if (avatarSizeSelector === 'small') {
+      props.small = true
+    }
+    if (avatarColour !== '') {
+      props.color = avatarColour
+    }
+
+    return (
+      <div>
+        <Avatar
+          {...props}
+          notifications={notificationCount}
+          image={imageSource}
+          name={avatarName}
+          bg={avatarColour}
+        />
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

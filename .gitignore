@@ -3,6 +3,7 @@ dist/
 node_modules/
 realm-object-server/
 .idea
+src/backend/db*
 
 .DS_Store
 data/

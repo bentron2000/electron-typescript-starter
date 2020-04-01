@@ -1,0 +1,3 @@
+import { Seat } from '.'
+// TODO Design a universal CTX object...
+export type Ctx = Seat | undefined | null

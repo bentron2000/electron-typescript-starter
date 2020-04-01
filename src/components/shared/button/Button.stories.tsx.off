@@ -1,0 +1,104 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, radios, select, boolean, color } from '@storybook/addon-knobs'
+
+// import styled from 'styled-components'
+import { Button } from './Button'
+
+storiesOf('Loupe Button', module).add(
+  'Loupe Button component',
+  () => {
+    const buttonText = text('Button Text', 'Push Me')
+
+    const buttonTypes = {
+      Primary: 'primary',
+      Secondary: 'secondary',
+      TextOnly: 'text',
+    }
+
+    const iconPositionTypes = {
+      none: '',
+      iconLeft: 'iconLeft',
+      iconRight: 'iconRight',
+    }
+
+    const iconList = [
+      'message',
+      'envelope',
+      'right-arrow',
+      'workflow',
+      'assets',
+      'brief',
+      'tree',
+      'menu-right',
+      'menu-left',
+      'chevron',
+      'search',
+      'plus-large',
+      'more',
+      'close-large',
+      'tick',
+      'add',
+      'close',
+      'edit',
+      'back',
+      'upload',
+      'download',
+      'close-small',
+      'list',
+      'grid',
+      'input',
+      'comment',
+      'export',
+      'collaborate',
+      'duplicate',
+      'filter',
+      'rate',
+      'image',
+      'plus',
+      'static-element',
+      'fieldset-element',
+    ]
+    const buttonColour = color('Button Colour', '')
+    const buttonTypeSelector = radios('Button Style', buttonTypes, `primary`)
+    const iconPositionSelector = radios(
+      'Icon Position',
+      iconPositionTypes,
+      `iconLeft`
+    )
+    const iconSelector = select('Icon', iconList, ``)
+    const isDisabled = boolean('Disabled?', false)
+
+    const props: any = {}
+
+    if (isDisabled) {
+      props.disabled = true
+    }
+    if (buttonTypeSelector === 'primary') {
+      props.primary = true
+    }
+    if (buttonTypeSelector === 'secondary') {
+      props.secondary = true
+    }
+    if (buttonTypeSelector === 'text') {
+      props.text = true
+    }
+    if (iconPositionSelector === 'iconLeft') {
+      props.iconLeft = iconSelector
+    }
+    if (iconPositionSelector === 'iconRight') {
+      props.iconRight = iconSelector
+    }
+    if (buttonColour !== '') {
+      props.color = buttonColour
+    }
+
+    return (
+      <div>
+        <Button {...props}>{buttonText}</Button>
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

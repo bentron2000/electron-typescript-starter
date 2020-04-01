@@ -6,7 +6,7 @@ require('module-alias/register')
 process.env.REALM_DISABLE_ANALYTICS = 'true'
 
 // This is needed to prevent Realm JS from writing to directories it doesn't have access to
-import './utils/process-directories'
+import './utils/Electron/process-directories'
 
 import { app, ipcMain } from 'electron'
 

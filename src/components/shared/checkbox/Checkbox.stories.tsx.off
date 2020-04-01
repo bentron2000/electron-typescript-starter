@@ -1,0 +1,36 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, radios } from '@storybook/addon-knobs'
+
+import { Checkbox } from './Checkbox'
+
+storiesOf('Loupe Checkbox', module).add(
+  'Loupe Checkbox component',
+  () => {
+    const checkboxSizes = {
+      Body: 'body',
+      Small: 'small',
+    }
+
+    const checkboxSizeSelector = radios('Checkbox Size', checkboxSizes, `body`)
+    const checkboxLabel = text('Checkbox Label', 'Checkbox Label')
+
+    const props: any = {}
+
+    if (checkboxSizeSelector === 'small') {
+      props.small = true
+    }
+
+    if (checkboxSizeSelector === 'body') {
+      props.body = true
+    }
+
+    return (
+      <div style={{ background: 'grey', height: '32px', padding: '16px' }}>
+        <Checkbox {...props} label={checkboxLabel} />
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

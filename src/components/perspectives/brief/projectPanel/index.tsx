@@ -1,0 +1,1 @@
+export { BriefProjectPanelContent } from './BriefProjectPanelContent'

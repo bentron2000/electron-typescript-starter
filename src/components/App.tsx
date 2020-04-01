@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStoreState, useStoreActions, store } from '../redux'
+import { useStoreState, useStoreActions, store } from '../reduxOld'
 
 export const App = () => {
   console.log('HEY THERE MOTHERFUCKER!')

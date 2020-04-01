@@ -4,14 +4,19 @@
     "moduleResolution": "node",
     "module": "esnext",
     "esModuleInterop": true,
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "react",
     "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "strict": true,
+    "lib": ["es2019", "DOM", "DOM.Iterable"],
+    //"strict": true,
+    "pretty": true,
+    "importHelpers": true,
     "noUnusedLocals": true,
+    "strictNullChecks": true,
     "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
     "downlevelIteration": true,
     "typeRoots": ["node_modules/@types"],
     "paths": {
@@ -31,7 +36,7 @@
       "@static/*": ["static/*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings/**/*.ts"],
   "exclude": ["node_modules", "build", "dist"],
   "awesomeTypescriptLoaderOptions": {
     "reportFiles": ["src/**/*.{ts,tsx}"]

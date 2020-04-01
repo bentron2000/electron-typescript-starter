@@ -1,0 +1,5 @@
+export { AssetRightPanelProvider } from './AssetRightPanelProvider'
+export { MetadataPane } from './MetadataPane'
+export { HistoryPane } from './HistoryPane'
+export { CommentsPane } from './CommentsPane'
+export { SettingsPane } from './SettingsPane'

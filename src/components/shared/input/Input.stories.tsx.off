@@ -1,0 +1,49 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { text, select, boolean } from '@storybook/addon-knobs'
+
+// import styled from 'styled-components'
+import { Input } from './Input'
+
+storiesOf('Loupe Input', module).add(
+  'Loupe Input component',
+  () => {
+    const inputLabel = text('Input Label', 'Input Label')
+    const inputPlaceholder = text('Input Placeholder', 'Input Placeholder')
+    const iconList = [
+      'message',
+      'envelope',
+      'right-arrow',
+      'workflow',
+      'assets',
+      'brief',
+      'tree',
+      'menu-right',
+      'menu-left'
+    ]
+
+    const iconSelector = select('Icon', iconList, `message`)
+
+    const showLabel = boolean('Label Shown?', false)
+
+    const props: any = {}
+
+    if (showLabel) {
+      props.showLabel = true
+    }
+
+    return (
+      <div style={{ background: 'grey', height: 'auto', padding: '16px' }}>
+        <Input
+          {...props}
+          icon={iconSelector}
+          label={inputLabel}
+          placeholder={inputPlaceholder}
+          value={'Initial value on load'}
+        />
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

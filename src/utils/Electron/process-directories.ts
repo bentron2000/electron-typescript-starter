@@ -21,7 +21,7 @@ import electron from 'electron'
 import fs from 'fs-extra'
 import { resolve } from 'path'
 
-import { getWindowOptions } from '../main/windowManager/windows/WindowOptions'
+import { getWindowOptions } from '../../main/windowManager/windows/WindowOptions'
 
 const app = electron.app || electron.remote.app
 const userDataPath = app.getPath('userData')

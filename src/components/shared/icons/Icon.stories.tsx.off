@@ -1,0 +1,63 @@
+import * as React from 'react'
+
+import { storiesOf } from '@storybook/react'
+import { select, color, text } from '@storybook/addon-knobs'
+
+// import styled from 'styled-components'
+import { Icon } from './Icon'
+import { theme } from '../Theme/theme'
+
+storiesOf('Loupe Icon', module).add(
+  'Loupe Icon component',
+  () => {
+    const iconList = [
+      'message',
+      'envelope',
+      'right-arrow',
+      'workflow',
+      'assets',
+      'brief',
+      'tree',
+      'menu-right',
+      'menu-left',
+      'chevron',
+      'search',
+      'plus-large',
+      'more',
+      'close-large',
+      'tick',
+      'add',
+      'close',
+      'edit',
+      'back',
+      'upload',
+      'download',
+      'close-small',
+      'list',
+      'grid',
+      'input',
+      'comment',
+      'export',
+      'collaborate',
+      'duplicate',
+      'filter',
+      'rate',
+      'image',
+      'plus',
+      'static-element',
+      'fieldset-element'
+    ]
+    const iconSelector = select('Icon', iconList, `message`)
+    const iconColour = color('Icon Colour', theme.primary)
+    const iconWidth = text('Icon Width', '32px')
+
+    const props: any = {}
+
+    return (
+      <div style={{ color: iconColour }}>
+        <Icon name={iconSelector} width={iconWidth} {...props} />
+      </div>
+    )
+  },
+  { knobs: { escapeHTML: true } }
+)

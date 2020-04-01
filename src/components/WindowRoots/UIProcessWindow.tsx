@@ -1,7 +1,7 @@
 import React from 'react'
 import { MemoryRouter as Router } from 'react-router-dom'
 import { StoreProvider } from 'easy-peasy'
-import { store } from '../../redux'
+import { store } from '../../reduxOld'
 import { App } from '@components/App'
 
 export const UIProcessWindow = () => {
