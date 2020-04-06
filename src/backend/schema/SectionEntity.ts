@@ -1,21 +1,22 @@
-import {
-  SectionPermissionEntity,
-  ElementEntity,
-  ProjectEntity,
-  StageEntity,
-  ProjectPermissionEntity,
-} from '..'
-import { Ctx, Section } from '@models'
-import { Event, ipcRenderer } from 'electron'
-import { v4 as uuid } from 'uuid'
+import { IpcRendererEvent, ipcRenderer } from 'electron'
 import { insert } from 'ramda'
+import { v4 as uuid } from 'uuid'
+
+import { Section } from '@models/Section'
+import { Ctx } from '@models/Ctx'
 import {
   LoupeRealmResponseCallback,
   renderSuccess,
   renderError,
   ipcReply,
 } from '@models/ipc'
-import { INewTemplateEntities } from './TemplateEntity'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { SectionPermissionEntity } from '@backend/schema/SectionPermissionEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { ProjectPermissionEntity } from '@backend/schema/ProjectPermissionEntity'
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
 
 export interface SectionTemplate {
   id: string
@@ -307,7 +308,7 @@ export class SectionEntity {
     // Sections for Project subscription listener
     ipcRenderer.on(
       'subscribe-to-project-sections',
-      async (event: Event, ctx: Ctx, projectId: string) => {
+      async (event: IpcRendererEvent, ctx: Ctx, projectId: string) => {
         const sendResponse = (sections: Section[]) => {
           ipcReply(event, 'update-project-sections', sections)
         }

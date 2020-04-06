@@ -4,7 +4,8 @@ import pluralize from 'pluralize'
 import { v4 as uuid } from 'uuid'
 
 import { useStoreActions } from '@redux/store'
-import { Element, TreeDefinition } from '@models'
+import { Element } from '@models/Element'
+import { TreeDefinition, tDfindById } from '@models/TreeDefinition'
 import { LoupeRealmErrorResponse } from '@models/ipc'
 
 import {
@@ -16,13 +17,12 @@ import {
   Flex,
   Text,
   StaticElementData,
-} from '../../shared'
-import { theme } from '../../shared/Theme/theme'
+} from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
+import { useDeepLink } from '@components/shared/deepLink/DeepLinkProvider'
+import { useToasts } from '@components/shared/toast/ToastProvider'
 import { AddInputPopOver } from './AddInputPopOver'
 import { DisplayFieldset } from './DisplayFieldset'
-import { useDeepLink } from '../../shared/deepLink/DeepLinkProvider'
-import { useToasts } from '../../shared/toast/ToastProvider'
-import { tDfindById } from '@models/TreeDefinition'
 
 const ElementCollapsible = styled(Collapsible)`
   margin-bottom: 0;

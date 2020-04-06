@@ -1,7 +1,8 @@
-import { FieldDefinitionEntity } from './FieldDefinitionEntity'
-import { ElementDataEntity } from '..'
 import { v4 as uuid } from 'uuid'
-import { FieldValue, Ctx } from '../../models'
+import { FieldDefinitionEntity } from '@backend/schema/FieldDefinitionEntity'
+import { ElementDataEntity } from '@backend/schema/ElementDataEntity'
+import { Ctx } from '@models/Ctx'
+import { FieldValue } from '@models/FieldValue'
 
 export class FieldValueEntity {
   public static schema: Realm.ObjectSchema = {

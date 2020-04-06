@@ -1,4 +1,4 @@
-import { FieldValue } from '@models'
+import { FieldValue } from '@models/FieldValue'
 
 export interface FieldDefinition {
   readonly id: string

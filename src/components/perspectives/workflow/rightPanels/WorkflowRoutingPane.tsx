@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Stage, StageTransition } from '@models'
-import { Box, Icon, Text, Flex, InlineEdit } from '../../../shared'
-import { theme } from '../../../shared/Theme/theme'
+import { Stage } from '@models/Stage'
+import { StageTransition } from '@models/StageTransition'
+import { Box, Icon, Text, Flex, InlineEdit } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 import { typePicker } from '@helpers/typePicker'
 
 export interface IRoutingPane {

@@ -1,4 +1,5 @@
-import { Repository, Stage } from '.'
+import { Stage } from '@models/Stage'
+import { Repository } from '@models/Repository'
 import { SetRequired } from '@helpers/typeScriptHelpers'
 
 export interface Subscription {
@@ -14,6 +15,6 @@ export function buildSubscription(
   return {
     id: '',
     model: 'Subscription',
-    ...s
+    ...s,
   }
 }

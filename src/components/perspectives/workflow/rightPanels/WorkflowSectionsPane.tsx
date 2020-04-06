@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { all, any, union } from 'ramda'
-import { theme } from '../../../shared/Theme/theme'
+import { theme } from '@components/shared/Theme/theme'
 
 import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
-import { Section, Stage } from '@models'
+import { Section } from '@models/Section'
+import { Stage } from '@models/Stage'
 import { useStateLockedByPromise } from '@components/helpers'
 import { useToasts } from '@components/shared/toast/ToastProvider'
 import {

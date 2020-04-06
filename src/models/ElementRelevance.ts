@@ -1,4 +1,4 @@
-import { Element } from '@models'
+import { Element } from '@models/Element'
 
 export interface ElementRelevance {
   element: Element

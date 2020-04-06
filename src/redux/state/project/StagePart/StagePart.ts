@@ -8,9 +8,12 @@ import {
   thunkOn,
   ThunkOn,
 } from 'easy-peasy'
-import { Project, Stage, Section } from '@models'
+
+import { Project } from '@models/Project'
+import { Stage, getStagesByProject } from '@models/Stage'
+import { Section } from '@models/Section'
+
 import { LoupeModel } from '@redux/state'
-import { getStagesByProject } from '@models/Stage'
 
 export interface StagePart {
   all: Stage[]

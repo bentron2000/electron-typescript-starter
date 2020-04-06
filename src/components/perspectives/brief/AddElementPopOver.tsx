@@ -1,11 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Element } from '@models'
+import { Element, buildElement } from '@models/Element'
 
-import { theme } from '../../shared/Theme/theme'
-import { AddButton, Icon, Text, Flex } from '../../shared'
+import { theme } from '@components/shared/Theme/theme'
+import { AddButton, Icon, Text, Flex } from '@components/shared'
 import { BriefAddContentPanel, DisplaySection } from '.'
-import { buildElement } from '@models/Element'
 
 const PopOverContentIcon = styled(Icon)`
   color: #858890;

@@ -1,11 +1,20 @@
-import { ipcMain, dialog, IpcMainEvent } from 'electron'
-import { Stage, Repository } from '@models'
+import { ipcMain, dialog, IpcMainEvent, webContents } from 'electron'
+import { Stage } from '@models/Stage'
+import { Repository } from '@models/Repository'
 import { fileFormats } from '@models/fileFormats'
 import { renderSuccess, renderError } from '@models/ipc'
 import * as path from 'path'
 import * as fs from 'fs'
 
-export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
+console.log('MAIN LISTENER CODE LOADING')
+
+export const mainIPCListeners = () => {
+  console.log('MAIN LISTENER CODE RUNNING')
+  // Logger utility for main process
+  ipcMain.on('main-log', (_event: IpcMainEvent, arg: string) => {
+    console.log('MAIN Log', arg)
+  })
+
   // Asset Import Selection Dialog
   ipcMain.on(
     'select-files-for-ingestion',
@@ -15,7 +24,8 @@ export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
       repo: Repository,
       _responseChannel: string
     ) => {
-      const selectedFiles = dialog.showOpenDialog({
+      console.log('THIS SHOUDL HAPEN')
+      const selectedFiles = dialog.showOpenDialogSync({
         title: 'Select assets for import...',
         buttonLabel: 'Import',
         filters: [
@@ -34,14 +44,10 @@ export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
 
       if (selectedFiles) {
         // send out to an APM process everything required to perform ingests.
-        // When realm gets into its own proc we'll need to adjust this
-        ipcMain.emit(
-          'ingest',
-          selectedFiles, // THIS MAY NEED TO BE UPDATED WITH THE NEW ELECTRON
-          stage,
-          repo,
-          dbWindow.webContents.id
-        )
+        // @ts-ignore
+        const dbId = global.windowlist['db-window']
+        // WTF. this 'something?' is required because emit is trimming the first arg...
+        ipcMain.emit('ingest', 'something?', selectedFiles, stage, repo, dbId)
         event.sender.send('adding-pending-assets', stage)
       }
     }
@@ -50,7 +56,7 @@ export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
   ipcMain.on(
     'repository-location-select-dialog',
     (event: IpcMainEvent, responseChannel: string) => {
-      const selectedFolder = dialog.showOpenDialog({
+      const selectedFolder = dialog.showOpenDialogSync({
         title: 'Select location for repository...',
         buttonLabel: 'Select',
         filters: [{ name: 'Allowed Formats', extensions: [] }],
@@ -71,7 +77,7 @@ export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
   ipcMain.on(
     'open-template-file-select-dialog',
     async (event: IpcMainEvent, teamId: string, responseChannel: string) => {
-      const selectedFile = await dialog.showOpenDialog({
+      const selectedFile = await dialog.showOpenDialogSync({
         title: 'Select template to import...',
         buttonLabel: 'Import',
         filters: [{ name: 'Allowed Formats', extensions: ['loupetemplate'] }],
@@ -79,19 +85,21 @@ export const mainIPCListeners = (dbWindow: Electron.BrowserWindow) => {
       })
 
       try {
-        if (selectedFile && selectedFile.filePaths.length === 1) {
-          // Was just .length...
+        if (selectedFile && selectedFile.length === 1) {
           fs.readFile(selectedFile[0], 'utf8', (err, data) => {
             if (err) {
               throw err
             } else {
-              dbWindow.webContents.send(
+              const dbWindow = webContents.fromId(
+                // @ts-ignore
+                global.windowlist['db-window']
+              )
+              dbWindow.send(
                 'handle-template-file-load',
                 teamId,
                 data,
                 responseChannel
               )
-              // handleData(data)
             }
           })
         }

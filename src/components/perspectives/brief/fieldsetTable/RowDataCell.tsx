@@ -1,8 +1,15 @@
 import * as React from 'react'
 import { useStoreActions } from '@redux/store'
-import { ElementData } from '@models'
+import { ElementData } from '@models/ElementData'
 import { LoupeRealmErrorResponse } from '@models/ipc'
-import { Box, Flex, InlineEdit, Text, theme, useToasts } from '@components/shared'
+import {
+  Box,
+  Flex,
+  InlineEdit,
+  Text,
+  theme,
+  useToasts,
+} from '@components/shared'
 import { ICell } from './RowRenderer'
 
 interface IRowDataCell extends ICell {
@@ -12,13 +19,17 @@ interface IRowDataCell extends ICell {
 // Renders an ElementData row cell
 export const RowDataCell = ({ cellData: elementData }: IRowDataCell) => {
   const { addToast } = useToasts()
-  const updateTreeInstance = useStoreActions(a => a.project.tree.updateTreeInstance)
+  const updateTreeInstance = useStoreActions(
+    a => a.project.tree.updateTreeInstance
+  )
 
   const handleSave = (value: string) => {
-    updateTreeInstance({ id: elementData.treeInstanceIds[0], name: value })
-      .catch((err: LoupeRealmErrorResponse) =>
-        addToast(err.message, { type: 'negative' })
-      )
+    updateTreeInstance({
+      id: elementData.treeInstanceIds[0],
+      name: value,
+    }).catch((err: LoupeRealmErrorResponse) =>
+      addToast(err.message, { type: 'negative' })
+    )
   }
 
   return (

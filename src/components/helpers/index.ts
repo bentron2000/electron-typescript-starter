@@ -4,10 +4,9 @@ export { useEditable } from './useEditable'
 export { usePrevious } from './usePrevious'
 export { useStateLockedByPromise } from './useStateLockedByPromise'
 export { delayMouseOver } from './delayMouseOver'
-export * from './treeHelpers'
-export { fileFormats } from '../../models/fileFormats'
 export { briefFilter } from './briefHelpers'
 export { useRealmQuery } from './useRealmQuery'
+export * from './treeHelpers'
 
 export const filterUndef = <T>(ts: Array<T | undefined>): T[] => {
   return ts.filter((t: T | undefined): t is T => !!t)

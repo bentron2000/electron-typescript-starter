@@ -8,11 +8,13 @@ process.env.REALM_DISABLE_ANALYTICS = 'true'
 // This is needed to prevent Realm JS from writing to directories it doesn't have access to
 import './utils/Electron/process-directories'
 
-import { app, ipcMain } from 'electron'
+import { app } from 'electron'
 
 import { Application } from './main/Application'
-import { initialise } from './config/realm'
-import { Owner } from './entities'
+
+process.on('uncaughtException', e => {
+  console.log('UNGAUGHT EXCEPTION', e)
+})
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -39,6 +41,15 @@ if (isDevelopment) {
     .then((name: string) => console.log(`Added Extension:  ${name}`))
     .catch((err: string) => console.log('An error occurred: ', err))
 }
+
+// Declare some additions to the global variable so we can store windows
+// some information about our windows and initialise it
+export interface Global extends NodeJS.Global {
+  windowlist: { [index: string]: number }
+}
+
+declare var global: Global
+global.windowlist = {}
 
 Application.sharedApplication.run()
 
@@ -68,15 +79,14 @@ app.on('will-quit', () => {
   Application.sharedApplication.destroy()
 })
 
-//////////////////////////////
-//    IPC MAIN LISTENERS
-//////////////////////////////
-const rlm = initialise()
+// OLD REALM TESTING THING
 
-ipcMain.on('request-names', event => {
-  const owners: Realm.Results<Owner> = rlm.objects('Owner')
-  event.sender.send(
-    'receive-names',
-    owners.map(o => o.name)
-  )
-})
+// const rlm = initialise()
+
+// ipcMain.on('request-names', event => {
+//   const owners: Realm.Results<Owner> = rlm.objects('Owner')
+//   event.sender.send(
+//     'receive-names',
+//     owners.map(o => o.name)
+//   )
+// })

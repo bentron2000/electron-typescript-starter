@@ -1,6 +1,5 @@
-import { TreeDefinition, TreeInstance } from '@models'
-import { tIfindById } from '@models/TreeInstance'
-import { tIflatMap } from '../../models/TreeInstance'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance, tIfindById, tIflatMap } from '@models/TreeInstance'
 
 export interface TDTreeItem {
   node?: TreeDefinition

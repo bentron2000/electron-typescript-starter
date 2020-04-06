@@ -1,6 +1,6 @@
 import { Action, action, Computed, Thunk, thunk, computed } from 'easy-peasy'
 
-import { PendingAsset } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
 import { Matches, Match } from '@models/Match'
 import { LoupeModel } from '..'
 import { ipcToDb } from '../helpers/ipcDbWindowHelper'

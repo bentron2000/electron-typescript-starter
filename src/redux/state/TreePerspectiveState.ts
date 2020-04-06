@@ -1,7 +1,10 @@
 import { Action, action, thunk, Thunk } from 'easy-peasy'
 
-import { TreeInstance, TreeDefinition, SaveTemplatePayload } from '@models'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance } from '@models/TreeInstance'
+import { SaveTemplatePayload } from '@models/Template'
 import { LoupeRealmResponse } from '@models/ipc'
+
 import { LoupeModel } from '@redux/state'
 import { IRhpState, filterRhpPayload } from '@redux/state/helpers/rhpState'
 import { ipcUpdate, ipcDelete, ipcCreate } from '@redux/ipc'

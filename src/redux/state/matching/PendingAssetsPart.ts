@@ -1,7 +1,7 @@
-import { PendingAsset, Stage } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
+import { Stage, getPendingAssets } from '@models/Stage'
 import { action, Action, Thunk, thunk } from 'easy-peasy'
 import { LoupeModel } from '..'
-import { getPendingAssets } from '@models/Stage'
 
 export interface PendingAssetsPart {
   assets: PendingAsset[]
@@ -22,5 +22,5 @@ export const pendingAssetsPart: PendingAssetsPart = {
     if (ctx) {
       getPendingAssets(ctx, payload, setterCallback)
     }
-  })
+  }),
 }

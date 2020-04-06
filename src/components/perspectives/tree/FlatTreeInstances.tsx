@@ -2,8 +2,12 @@ import * as React from 'react'
 import pluralize from 'pluralize'
 import styled from 'styled-components'
 import { tiToFlatTreeItems } from '@components/helpers/treeHelpers'
-import { tIgetBranch, buildTreeInstance } from '@models/TreeInstance'
-import { TreeInstance, TreeDefinition } from '@models'
+import {
+  tIgetBranch,
+  buildTreeInstance,
+  TreeInstance,
+} from '@models/TreeInstance'
+import { TreeDefinition } from '@models/TreeDefinition'
 import {
   Box,
   Flex,

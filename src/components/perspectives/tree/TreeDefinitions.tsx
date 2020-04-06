@@ -5,8 +5,8 @@ import * as DefinitionTheme from 'loupe-definition-tree'
 import pluralize from 'pluralize'
 
 import { useStoreActions } from '@redux/store'
-import { TreeDefinition, Project } from '@models'
-import { buildTreeDefinition } from '@models/TreeDefinition'
+import { Project } from '@models/Project'
+import { TreeDefinition, buildTreeDefinition } from '@models/TreeDefinition'
 
 import {
   Box,

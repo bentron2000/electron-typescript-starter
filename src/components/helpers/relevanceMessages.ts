@@ -1,8 +1,8 @@
 import * as pluralize from 'pluralize'
 import { sum } from 'ramda'
-import { TreeDefinition, ElementRelevance } from '@models'
-import { tDfindById } from '@models/TreeDefinition'
+import { TreeDefinition, tDfindById } from '@models/TreeDefinition'
 import { tIfindById } from '@models/TreeInstance'
+import { ElementRelevance } from '@models/ElementRelevance'
 
 /**
  * --------------------------------------------------

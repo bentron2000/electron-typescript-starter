@@ -1,14 +1,17 @@
-import { ipcMain, Event } from 'electron'
-import { Project, Ctx, Seat } from '@models'
-import {
-  TeamEntity,
-  StagePermissionEntity,
-  UserEntity,
-  ProjectEntity,
-  ProjectPermissionEntity,
-  RepositoryEntity,
-  SectionPermissionEntity,
-} from '..'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
+
+import { Project } from '@models/Project'
+import { Seat } from '@models/Seat'
+import { Ctx } from '@models/Ctx'
+
+import { TeamEntity } from '@backend/schema/TeamEntity'
+import { StagePermissionEntity } from '@backend/schema/StagePermissionEntity'
+import { UserEntity } from '@backend/schema/UserEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { ProjectPermissionEntity } from '@backend/schema/ProjectPermissionEntity'
+import { SectionPermissionEntity } from '@backend/schema/SectionPermissionEntity'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
+
 import {
   renderSuccess,
   renderError,
@@ -83,19 +86,24 @@ export class SeatEntity {
 
   public static registerListeners(realm: Realm) {
     // Projects for seat subscription listener
-    ipcMain.on('subscribe-to-seat-projects', async (event: Event, ctx: Ctx) => {
-      const sendResult = (projects: Project[]) => {
-        ipcReply(event, 'update-seat-projects', projects)
+    ipcRenderer.on(
+      'subscribe-to-seat-projects',
+      async (event: IpcRendererEvent, ctx: Ctx) => {
+        const sendResult = (projects: Project[]) => {
+          ipcReply(event, 'update-seat-projects', projects)
+        }
+        if (ctx) {
+          const unsubscribe = await ProjectEntity.getBySeatId(
+            realm,
+            ctx.id,
+            sendResult
+          )
+          // One time event to be called before any new subscription
+          ipcRenderer.once('unsubscribe-from-seat-projects', () =>
+            unsubscribe()
+          )
+        }
       }
-      if (ctx) {
-        const unsubscribe = await ProjectEntity.getBySeatId(
-          realm,
-          ctx.id,
-          sendResult
-        )
-        // One time event to be called before any new subscription
-        ipcMain.once('unsubscribe-from-seat-projects', () => unsubscribe())
-      }
-    })
+    )
   }
 }

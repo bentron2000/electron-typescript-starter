@@ -3,14 +3,15 @@ import pluralize from 'pluralize'
 import { groupBy, any } from 'ramda'
 
 import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
-import { tDflatMap, tDfindById, tDgetBranch } from '@models/TreeDefinition'
-import { hasTiRelevance, createTiRelevance } from '@models/Element'
 import {
-  Element,
-  TreeInstance,
+  tDflatMap,
+  tDfindById,
+  tDgetBranch,
   TreeDefinition,
-  ElementRelevance,
-} from '@models'
+} from '@models/TreeDefinition'
+import { hasTiRelevance, createTiRelevance, Element } from '@models/Element'
+import { ElementRelevance } from '@models/ElementRelevance'
+import { TreeInstance } from '@models/TreeInstance'
 
 import { theme } from '@components/shared/Theme/theme'
 import { useToasts } from '@components/shared/toast/ToastProvider'

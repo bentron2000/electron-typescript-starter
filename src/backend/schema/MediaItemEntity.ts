@@ -1,6 +1,8 @@
 import { v4 as uuid } from 'uuid'
-import { Ctx, MediaItem } from '@models'
-import { TreeInstanceEntity, MediaStateEntity } from '..'
+import { Ctx } from '@models/Ctx'
+import { MediaItem } from '@models/MediaItem'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { MediaStateEntity } from '@backend/schema/MediaStateEntity'
 
 export class MediaItemEntity {
   public static schema: Realm.ObjectSchema = {
@@ -58,11 +60,11 @@ export class MediaItemEntity {
         )
 
         // Find the tree instance
-        const ti = (
-          (realm
-            .objects('TreeInstance')
-            .filtered(`id = '${mediaItem.treeInstanceId}'`)[0] as unknown)
-        ) as TreeInstanceEntity
+        const ti = (realm
+          .objects('TreeInstance')
+          .filtered(
+            `id = '${mediaItem.treeInstanceId}'`
+          )[0] as unknown) as TreeInstanceEntity
 
         // Add the media item to the tree instance
         ti.media.push(newMI)

@@ -6,14 +6,29 @@ import * as exiftool from 'node-exiftool'
 import * as exiftoolBin from 'dist-exiftool'
 
 import { PendingAsset, buildPendingAsset } from '@models/PendingAsset'
-import { Stage, Repository } from '@models'
+import { Stage } from '@models/Stage'
+import { Repository } from '@models/Repository'
+import { LoupeRealmResponse, renderSuccess, renderError } from '@models/ipc'
 
 import { v4 as uuid } from 'uuid'
 import { previewGen } from '@utils/APMProcess/previewGenerators'
 import { thumbGen } from '@utils/APMProcess/thumbnailGenerators'
 import { ipcRenderer } from 'electron'
-import { LoupeRealmResponse, renderSuccess, renderError } from '@models/ipc'
 import { generateHash } from '@utils/Helpers/fsHelpers'
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+
+let exifExec: any
+if (!isDevelopment && process.platform === 'darwin') {
+  console.log('Adjusting exiftool location for MacOS App from ')
+  console.log('EXIFTOOL OBJ', exiftoolBin)
+  console.log('EXIFTOOL default', exiftoolBin.default)
+  exifExec = exiftoolBin.default.replace('app.asar', 'app.asar.unpacked')
+  console.log('EXIFTOOL default if replaced', exifExec)
+} else {
+  exifExec = exiftoolBin
+}
+
 // const DEFAULT_REPO_LOCATION = `${__dirname}/../../../../repos`
 
 /*
@@ -135,7 +150,8 @@ export const ingestAssets = (
 ) => {
   return new Promise<LoupeRealmResponse>((resolve, reject) => {
     const sendInfoBack = sendInfoBackFunc(dbWindowId)
-    const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+    const ep = new exiftool.ExiftoolProcess(exifExec)
+    console.log('INSIDE THE INGEST FUNC')
     ep.open().then(() => {
       createPendingAssetFromPath(fileName, stage.id)
         .then(res => sendInfoBack(res))

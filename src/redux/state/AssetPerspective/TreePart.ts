@@ -1,6 +1,6 @@
 import { Action, action, Computed, computed } from 'easy-peasy'
 import { LoupeModel } from '../'
-import { TreeInstance } from '@models'
+import { TreeInstance } from '@models/TreeInstance'
 import { TITreeItem, tiToTreeItem } from '@components/helpers/treeHelpers'
 
 export interface TreePart {

@@ -1,22 +1,21 @@
 import * as Realm from 'realm'
-import { Event, ipcRenderer } from 'electron'
-import { Project, Ctx, Template, NewProjectOptions } from '@models'
+import { IpcRendererEvent, ipcRenderer } from 'electron'
+import { Project, NewProjectOptions } from '@models/Project'
+import { Ctx } from '@models/Ctx'
 import { v4 as uuid } from 'uuid'
 
-import {
-  TeamEntity,
-  StageEntity,
-  ProjectPermissionEntity,
-  TreeDefinitionEntity,
-  TreeInstanceEntity,
-  SeatEntity,
-  SectionEntity,
-  TemplateEntity,
-  StageTransitionEntity,
-  ElementEntity,
-  FieldDefinitionEntity,
-  SectionPermissionEntity,
-} from '..'
+import { TeamEntity } from '@backend/schema/TeamEntity'
+import { StageEntity } from '@backend/schema/StageEntity'
+import { ProjectPermissionEntity } from '@backend/schema/ProjectPermissionEntity'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { TemplateEntity, Template } from '@backend/schema/TemplateEntity'
+import { StageTransitionEntity } from '@backend/schema/StageTransitionEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { FieldDefinitionEntity } from '@backend/schema/FieldDefinitionEntity'
+import { SectionPermissionEntity } from '@backend/schema/SectionPermissionEntity'
 import { buildNewTemplateEntities } from '@backend/schema/TemplateEntity'
 
 import {
@@ -301,7 +300,7 @@ export class ProjectEntity {
     // Projects for seat subscription listener
     ipcRenderer.on(
       'subscribe-to-seat-projects',
-      async (event: Event, ctx: Ctx) => {
+      async (event: IpcRendererEvent, ctx: Ctx) => {
         const sendResult = (projects: Project[]) => {
           ipcReply(event, 'update-seat-projects', projects)
         }

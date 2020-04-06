@@ -9,10 +9,10 @@ import {
   IBreadcrumbItemContent,
   BreadcrumbItemButton,
   Text,
-} from '..'
-import { TreeInstance, TreeDefinition } from '@models'
-import { theme } from '../Theme/theme'
-import { tIgetName } from '@models/TreeInstance'
+} from '@components/shared'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance, tIgetName } from '@models/TreeInstance'
+import { theme } from '@components/shared/Theme/theme'
 
 const TreeAncestorBreadcrumbItem = styled(BreadcrumbItem)`
   height: auto;

@@ -1,7 +1,11 @@
-import { SectionPermission } from '@models'
-import { StageEntity, SectionEntity, SeatEntity } from '..'
-import { INewTemplateEntities } from './TemplateEntity'
 import { v4 as uuid } from 'uuid'
+
+import { SectionPermission } from '@models/SectionPermission'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
 
 export interface SectionPermissionTemplate {
   id: string

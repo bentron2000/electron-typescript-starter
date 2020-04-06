@@ -1,8 +1,10 @@
-import { ipcRenderer, Event } from 'electron'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
 import { Matches } from '@models/Match'
-import { PendingAsset, Ctx, Stage } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
+import { Ctx } from '@models/Ctx'
+import { Stage } from '@models/Stage'
 import { executeMatches } from '@utils/DBProcess/matching'
-import { StageEntity } from '..'
+import { StageEntity } from '@backend/schema/StageEntity'
 import { ipcReply } from '@models/ipc'
 
 export class PendingAssetEntity {
@@ -92,7 +94,7 @@ export class PendingAssetEntity {
     // Pending Assets for stage listener
     ipcRenderer.on(
       'subscribe-to-stage-pendingAssets',
-      async (event: Event, ctx: Ctx, stageId: string) => {
+      async (event: IpcRendererEvent, ctx: Ctx, stageId: string) => {
         const sendResult = (pendingAssets: PendingAsset[]) => {
           ipcReply(event, 'update-stage-pendingAssets', pendingAssets)
         }
@@ -110,7 +112,7 @@ export class PendingAssetEntity {
     // Clear pending assets
     ipcRenderer.on(
       'clear-unmatched-pending-assets',
-      (_event: Event, stage: Stage) => {
+      (_event: IpcRendererEvent, stage: Stage) => {
         // query db for unmatched assets at a stage
         // Delete the previews and db entries for them
         console.log('clear pending assets!')
@@ -121,7 +123,7 @@ export class PendingAssetEntity {
     // Perform matches
     ipcRenderer.on(
       'perform-matches',
-      (_event: Event, ctx: Ctx, matches: Matches) => {
+      (_event: IpcRendererEvent, ctx: Ctx, matches: Matches) => {
         executeMatches(realm, ctx, matches)
       }
     )
@@ -129,7 +131,7 @@ export class PendingAssetEntity {
     // Upsert a pending asset
     ipcRenderer.on(
       'upsert-pending-asset',
-      (_event: Event, res: PendingAsset) => {
+      (_event: IpcRendererEvent, res: PendingAsset) => {
         PendingAssetEntity.upsert(realm, res)
       }
     )

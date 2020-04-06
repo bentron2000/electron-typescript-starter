@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { PopOver, Flex, Box, Icon, Button } from '@components/shared'
 import { Text } from '@components/shared/typography/Text'
 import { theme } from '@components/shared/Theme/theme'
-import { Stage } from '@models'
+import { Stage } from '@models/Stage'
 import { typePicker } from '@helpers/typePicker'
 
 const StyledStageListItem = styled(Flex)`

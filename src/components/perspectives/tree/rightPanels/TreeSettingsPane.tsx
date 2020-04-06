@@ -1,11 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { TreeDefinition } from '@models'
+import { TreeDefinition } from '@models/TreeDefinition'
 import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
 
-import { BoxCheckbox, Flex, Box } from '../../../shared'
-import { useToasts } from '../../../shared/toast/ToastProvider'
+import { BoxCheckbox, Flex, Box } from '@components/shared'
+import { useToasts } from '@components/shared/toast/ToastProvider'
 import pluralize from 'pluralize'
 
 const DividerLine = styled(Box)`

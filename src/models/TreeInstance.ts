@@ -1,4 +1,4 @@
-import { MediaItem } from '@models'
+import { MediaItem } from '@models/MediaItem'
 
 export interface TreeInstance {
   readonly id: string

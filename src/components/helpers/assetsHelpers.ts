@@ -1,4 +1,5 @@
-import { TreeDefinition, MediaState } from '@models'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { MediaState } from '@models/MediaState'
 import {
   tIgetBranch,
   tIfindById,

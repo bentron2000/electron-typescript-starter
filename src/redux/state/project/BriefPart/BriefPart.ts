@@ -6,9 +6,13 @@ import {
   Computed,
   computed,
   ThunkOn,
-  thunkOn
+  thunkOn,
 } from 'easy-peasy'
-import { Project, Section, Stage } from '@models'
+
+import { Project } from '@models/Project'
+import { Stage } from '@models/Stage'
+import { Section } from '@models/Section'
+
 import { LoupeModel } from '../..'
 
 // TODO: Use the ipc module to remove need for this
@@ -48,5 +52,5 @@ export const briefPart: BriefPart = {
   onProjectSet: thunkOn(
     (_, storeActions) => storeActions.project.set,
     (actions, target) => actions.fetch(target.payload)
-  )
+  ),
 }

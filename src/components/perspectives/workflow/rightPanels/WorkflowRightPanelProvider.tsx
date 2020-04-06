@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { useStoreState, useStoreActions } from '@redux/store'
-import { Stage, StageTransition } from '@models'
+import { StageTransition } from '@models/StageTransition'
+import { Stage } from '@models/Stage'
 
 import {
   WorkflowRoutingPane,
   WorkflowToolsPane,
   WorkflowGroupsPane,
   WorkflowSectionsPane,
-  WorkflowRepositoriesPane
+  WorkflowRepositoriesPane,
 } from '.'
-import { AccordionItem } from '../../../shared/accordion/Accordion'
+import { AccordionItem } from '@components/shared/accordion/Accordion'
 
 type RightPanelMenuItem = AccordionItem & { hidden?: boolean }
 
@@ -53,13 +54,13 @@ export const WorkflowRightPanelProvider = (
           saveTransitionName={saveTransitionName}
         />
       ),
-      hidden: !currentStage
+      hidden: !currentStage,
     },
     { title: 'Tools', content: <WorkflowToolsPane /> },
     { title: 'Groups', content: <WorkflowGroupsPane /> },
     {
       title: 'Repositories',
-      content: <WorkflowRepositoriesPane currentStage={currentStage} />
+      content: <WorkflowRepositoriesPane currentStage={currentStage} />,
     },
     {
       id: 'brief-sections',
@@ -72,8 +73,8 @@ export const WorkflowRightPanelProvider = (
           updateStage={updateStage}
         />
       ),
-      hidden: !currentStage
-    }
+      hidden: !currentStage,
+    },
   ].filter(i => !i.hidden)
 
   return <>{props.children({ items, ...props })}</>

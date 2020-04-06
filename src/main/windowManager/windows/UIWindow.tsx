@@ -9,14 +9,15 @@ export const UIWindow: IWindow = {
   getWindowOptions: props => {
     return {
       width: 1200,
-      height: 900,
       minWidth: 1024,
+      height: 900,
       minHeight: 768,
-      // titleBarStyle: 'hidden',
+      titleBarStyle: 'hidden',
+      showDevTools: true,
     }
   },
   getComponent: () =>
-    import('../../../components/WindowRoots/UIProcessWindow').then(
+    import('@components/WindowRoots/UIProcessWindow').then(
       // TODO: Fix the props for this to include a type
       m => m.UIProcessWindow as any
     ),

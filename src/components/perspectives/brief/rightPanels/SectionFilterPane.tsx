@@ -2,10 +2,10 @@ import * as React from 'react'
 import { without } from 'ramda'
 
 import { BriefFilter } from '@redux/state'
-import { Section } from '@models'
+import { Section } from '@models/Section'
 
-import { Lozenge, Box } from '../../../shared'
-import { theme } from '../../../shared/Theme/theme'
+import { Lozenge, Box } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 export interface SectionFilterPane {
   sections: Section[]
@@ -21,12 +21,12 @@ export const SectionFilterPane = (props: SectionFilterPane) => {
       ? props.setFilter({
           ...props.filter,
           sectionFilter: without([id], activeFilters),
-          stageFilter: props.filter.stageFilter
+          stageFilter: props.filter.stageFilter,
         })
       : props.setFilter({
           ...props.filter,
           sectionFilter: [...activeFilters, id],
-          stageFilter: props.filter.stageFilter
+          stageFilter: props.filter.stageFilter,
         })
 
   return (

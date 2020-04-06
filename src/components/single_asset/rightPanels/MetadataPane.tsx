@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { MediaState } from '@models'
+import { MediaState } from '@models/MediaState'
 
-import { Box, Text, Flex } from '../../shared'
-import { theme } from '../../shared/Theme/theme'
+import { Box, Text, Flex } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 export interface MetadataPane {
   currentMediaState: MediaState | undefined

@@ -8,13 +8,20 @@ import {
   ThunkOn,
   thunkOn,
 } from 'easy-peasy'
-import { Project, TreeDefinition, TreeInstance } from '@models'
-import { LoupeModel } from '@redux/state'
-import { tDfindById, getRootTdByProject } from '@models/TreeDefinition'
-import { ipcGet, ipcUpdate } from '@redux/ipc'
-import { tIfindById } from '@models/TreeInstance'
-import { RequireAtLeast } from '@helpers/typeScriptHelpers'
+
+import { Project } from '@models/Project'
+import { TreeInstance, tIfindById } from '@models/TreeInstance'
+import {
+  TreeDefinition,
+  tDfindById,
+  getRootTdByProject,
+} from '@models/TreeDefinition'
+
 import { LoupeRealmResponse } from '@models/ipc'
+
+import { LoupeModel } from '@redux/state'
+import { ipcGet, ipcUpdate } from '@redux/ipc'
+import { RequireAtLeast } from '@helpers/typeScriptHelpers'
 
 export interface TreePart {
   rootTD: TreeDefinition | undefined

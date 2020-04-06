@@ -9,7 +9,11 @@ import {
   getWindowOptions,
   IWindowConstructorOptions,
 } from './windows/Window'
-import { WindowOptions, WindowType } from './windows/WindowOptions'
+import {
+  WindowOptions,
+  WindowType,
+  WindowEntryHtml,
+} from './windows/WindowOptions'
 
 export interface IEventListenerCallbacks {
   blur?: () => void
@@ -25,12 +29,10 @@ interface IWindowHandle {
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
-function getRendererHtmlPath() {
+function getRendererHtmlPath(type: WindowType) {
   const indexPath = isDevelopment
-    ? // tslint:disable-next-line:no-var-requires no-require-imports
-      require('../../../static/index.development.html')
-    : // tslint:disable-next-line:no-var-requires no-require-imports
-      require('../../../static/index.html')
+    ? WindowEntryHtml[type].development
+    : WindowEntryHtml[type].production
   // __dirname is the directory of the bundle
   return path.resolve(__dirname, indexPath)
 }
@@ -129,11 +131,17 @@ export class WindowManager {
 
     // Construct the window
     const window = new BrowserWindow(windowOptions) as W
+
     this.windows.push({
       window,
       type: options.type,
       singletonKey,
     })
+
+    // put the id of this window into global state for later reference
+    // TODO - refactor this into the electron store
+    // @ts-ignore
+    global.windowlist[options.type] = window.id
 
     // If the window should maximize - let's maximize it when it gets shown
     if (maximize) {
@@ -141,10 +149,12 @@ export class WindowManager {
         window.maximize()
       })
     }
-
+    window.webContents.openDevTools({
+      mode: 'detach',
+    })
     // Open up the dev tools, if not in production mode
     // if (process.env.REALM_STUDIO_DEV_TOOLS) {
-    if (isDevelopment) {
+    if (isDevelopment && windowOptions.showDevTools) {
       window.webContents.once('did-finish-load', () => {
         window.webContents.openDevTools({
           mode: 'detach',
@@ -174,7 +184,7 @@ export class WindowManager {
     // Load the renderer html into the window
     window.loadURL(
       url.format({
-        pathname: getRendererHtmlPath(),
+        pathname: getRendererHtmlPath(options.type),
         protocol: 'file:',
         query,
         slashes: true,
@@ -282,8 +292,14 @@ export class WindowManager {
         const display = displays[desiredDisplayIndex]
         if (display) {
           return display
+        } else {
+          return undefined
         }
+      } else {
+        return undefined
       }
+    } else {
+      return undefined
     }
   }
 

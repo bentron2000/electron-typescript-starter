@@ -2,16 +2,10 @@ import { Action, action, Thunk, thunk } from 'easy-peasy'
 import { merge, clone } from 'ramda'
 import { attemptLogin, LoginUserObj } from '@models/User'
 import { LoupeModel } from '.'
-import { ipcRenderer } from 'electron'
 
 export interface Perspective {
   readonly id: 'dashboard' | 'brief' | 'tree' | 'workflow' | 'assets'
   data: PerspectiveData
-}
-
-interface WindowIDs {
-  db: number
-  ui: number
 }
 
 interface PerspectiveData {
@@ -28,10 +22,6 @@ interface SearchState {
 type perspectiveIds = 'dashboard' | 'brief' | 'tree' | 'workflow' | 'assets'
 
 export interface AppState {
-  dbwindowId: number
-  setDbWindowId: Action<AppState, number>
-  fetchDbWindowId: Thunk<AppState>
-
   isLoggedIn: string | undefined
 
   currentTeam: string | null
@@ -76,19 +66,6 @@ const PERSPECTIVES: Perspective[] = [
 ]
 
 export const app: AppState = {
-  dbwindowId: -1,
-  setDbWindowId: action((state, id) => {
-    state.dbwindowId = id
-  }),
-  fetchDbWindowId: thunk(actions => {
-    ipcRenderer.once('receive-window-ids', (_event: Event, ids: WindowIDs) => {
-      // now that we have the db window id, tell the db we're ready to roll
-      ipcRenderer.sendTo(ids.db, 'UI_ready')
-      actions.setDbWindowId(ids.db)
-    })
-    ipcRenderer.send('request-window-ids')
-  }),
-
   isLoggedIn: undefined, // will replace with auth tokens or whatever. We'll just use the user itself for now
 
   currentTeam: null,

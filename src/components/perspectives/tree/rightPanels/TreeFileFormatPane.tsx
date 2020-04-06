@@ -1,14 +1,17 @@
 import * as React from 'react'
+
+import { TreeDefinition } from '@models/TreeDefinition'
+import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
+import { fileFormats } from '@models/fileFormats'
+
 import {
   Box,
   CheckboxList,
   BoxCheckbox,
   CheckboxListChildProps,
 } from '@components/shared'
-import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
-import { TreeDefinition } from '@models'
 import { useToasts } from '@components/shared/toast/ToastProvider'
-import { useStateLockedByPromise, fileFormats } from '@components/helpers'
+import { useStateLockedByPromise } from '@components/helpers'
 
 interface TreeFileFormatPane extends CheckboxListChildProps {
   currentTD: TreeDefinition

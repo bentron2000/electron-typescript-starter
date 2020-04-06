@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Element, TreeDefinition } from '@models'
+import { Element } from '@models/Element'
+import { TreeDefinition } from '@models/TreeDefinition'
 import { Box, useDeepLink } from '@components/shared'
 import { FieldsetTable } from './fieldsetTable'
 

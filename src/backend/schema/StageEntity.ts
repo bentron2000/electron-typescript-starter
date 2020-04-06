@@ -1,26 +1,29 @@
 import { v4 as uuid } from 'uuid'
-import { ipcRenderer, Event } from 'electron'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
 
-import {
-  ProjectEntity,
-  StagePermissionEntity,
-  SectionPermissionEntity,
-  SectionEntity,
-  MediaStateEntity,
-  StageTransitionEntity,
-  SeatEntity,
-  PendingAssetEntity,
-  SubscriptionEntity,
-  RepositoryEntity,
-} from '@backend'
+import { Stage } from '@models/Stage'
+import { PendingAsset } from '@models/PendingAsset'
+import { Ctx } from '@models/Ctx'
+
+import { StagePermissionEntity } from '@backend/schema/StagePermissionEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { SectionPermissionEntity } from '@backend/schema/SectionPermissionEntity'
+import { MediaStateEntity } from '@backend/schema/MediaStateEntity'
+import { PendingAssetEntity } from '@backend/schema/PendingAssetEntity'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
+import { SubscriptionEntity } from '@backend/schema/SubscriptionEntity'
+import { StageTransitionEntity } from '@backend/schema/StageTransitionEntity'
+
 import {
   LoupeRealmResponse,
   renderSuccess,
   renderError,
   ipcReply,
 } from '@models/ipc'
-import { Ctx, Stage, PendingAsset } from '@models'
-import { INewTemplateEntities } from './TemplateEntity'
+
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
 
 export interface StageTemplate {
   id: string
@@ -413,7 +416,7 @@ export class StageEntity {
     // Stages for Project subscription listener
     ipcRenderer.on(
       'subscribe-to-project-stages',
-      async (event: Event, ctx: Ctx, projectId: string) => {
+      async (event: IpcRendererEvent, ctx: Ctx, projectId: string) => {
         const sendResult = (stages: Stage[]) => {
           ipcReply(event, 'update-project-stages', stages)
         }

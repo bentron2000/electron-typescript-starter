@@ -1,7 +1,9 @@
 import { v4 as uuid } from 'uuid'
-import { FieldDefinition, Ctx } from '@models'
+import { FieldDefinition } from '@models/FieldDefinition'
+import { Ctx } from '@models/Ctx'
 import { RequireAtLeast } from '@helpers/typeScriptHelpers'
-import { ElementEntity, FieldValueEntity } from '..'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { FieldValueEntity } from '@backend/schema/FieldValueEntity'
 
 export interface FieldDefinitionTemplate {
   id: string

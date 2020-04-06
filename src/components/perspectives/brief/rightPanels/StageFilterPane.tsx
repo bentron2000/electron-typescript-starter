@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { without } from 'ramda'
 
-import { Stage } from '@models'
+import { Stage } from '@models/Stage'
 import { BriefFilter } from '@redux/state'
 
-import { Lozenge, Box } from '../../../shared'
-import { theme } from '../../../shared/Theme/theme'
+import { Lozenge, Box } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 interface StageFilterPane {
   stages: Stage[]
@@ -18,11 +18,11 @@ export const StageFilterPane = (props: StageFilterPane) => {
     props.filter.stageFilter.includes(id)
       ? props.setFilter({
           ...props.filter,
-          stageFilter: without([id], props.filter.stageFilter)
+          stageFilter: without([id], props.filter.stageFilter),
         })
       : props.setFilter({
           ...props.filter,
-          stageFilter: [...props.filter.stageFilter, id]
+          stageFilter: [...props.filter.stageFilter, id],
         })
 
   return (

@@ -4,7 +4,13 @@ import { v4 as uuid } from 'uuid'
 import { findLast } from 'ramda'
 
 import { useStoreState } from '@redux/store'
-import { Element, FieldDefinition, FieldValue, ElementData } from '@models'
+
+import { Element } from '@models/Element'
+import { ElementData } from '@models/ElementData'
+
+import { FieldDefinition } from '@models/FieldDefinition'
+import { FieldValue } from '@models/FieldValue'
+
 import { groupItemsByTiParent } from '@components/helpers'
 import { HeaderRenderer, HeaderCell } from './HeaderRenderer'
 import { RowRenderer, Cell } from './RowRenderer'
@@ -40,7 +46,7 @@ export interface TableDataRow {
 }
 
 export interface TableData {
-  rows: TableDataRow[],
+  rows: TableDataRow[]
   columns: TableDataColumn[]
 }
 
@@ -74,7 +80,7 @@ const scrollToGridItem = (
 ) => {
   rows.forEach((row, rowIndex) => {
     // Search row cells for matching id
-    const colDataKey = Object.keys(row).find((k) => linkToIds.includes(row[k].id))
+    const colDataKey = Object.keys(row).find(k => linkToIds.includes(row[k].id))
     // Find the column of the matching row cell
     const col = columns.find(c => c.dataKey === colDataKey)
     if (col) {
@@ -90,9 +96,15 @@ const scrollToGridItem = (
 }
 
 // Generate fieldset base table data from element
-const createData = (fds: FieldDefinition[], groupedEds: { [key: string]: ElementData[] }, colWidth: number): TableData => {
+const createData = (
+  fds: FieldDefinition[],
+  groupedEds: { [key: string]: ElementData[] },
+  colWidth: number
+): TableData => {
   // First column is a placeholder for the blank eds first column
-  const columns = [{ dataKey: 'col-0', key: uuid(), fd: { name: '' }, width: colWidth }]
+  const columns = [
+    { dataKey: 'col-0', key: uuid(), fd: { name: '' }, width: colWidth },
+  ]
   fds.forEach((fd, i) => {
     columns.push({ dataKey: `col-${i + 1}`, key: fd.id, fd, width: colWidth })
   })
@@ -104,9 +116,9 @@ const createData = (fds: FieldDefinition[], groupedEds: { [key: string]: Element
         { id: parentId, model: 'TreeInstance' },
         groupedEds[parentId].map(ed => {
           const row = { id: ed.id, 'col-0': ed }
-          ed.fields.forEach((fv, i) => row[`col-${i + 1}`] = fv)
+          ed.fields.forEach((fv, i) => (row[`col-${i + 1}`] = fv))
           return row
-        })
+        }),
       ].flat()
     })
     .flat()
@@ -120,14 +132,18 @@ export const FieldsetTable = ({
   columnWidth = 225,
   rowHeight = 50,
   scrollToIds = [],
-  onScrollTo
+  onScrollTo,
 }: FieldsetTable) => {
   const rootTd = useStoreState(s => s.project.tree.rootTD)
   const rootTi = rootTd ? rootTd.instances[0] : undefined
   const tableRef = React.useRef<any>(null)
   const getData = () => {
     const groupedData = rootTi
-      ? groupItemsByTiParent(rootTi, element.data, (ed: ElementData) => ed.treeInstanceIds[0])
+      ? groupItemsByTiParent(
+          rootTi,
+          element.data,
+          (ed: ElementData) => ed.treeInstanceIds[0]
+        )
       : {}
     return createData(element.fieldDefinitions, groupedData, columnWidth)
   }
@@ -142,7 +158,7 @@ export const FieldsetTable = ({
 
   const components = {
     TableHeaderCell: HeaderCell,
-    TableCell: Cell
+    TableCell: Cell,
   }
 
   const handleScroll = React.useCallback(
@@ -156,17 +172,28 @@ export const FieldsetTable = ({
 
       if (dir === 'forward') {
         const previousRows = data.rows.slice(0, scrollRowDataIndex)
-        const lastStickyRow = findLast(row => row.model === 'TreeInstance', previousRows)
+        const lastStickyRow = findLast(
+          row => row.model === 'TreeInstance',
+          previousRows
+        )
 
-        if (lastStickyRow && scrollRowDataIndex >= data.rows.indexOf(lastStickyRow)) {
+        if (
+          lastStickyRow &&
+          scrollRowDataIndex >= data.rows.indexOf(lastStickyRow)
+        ) {
           setFrozenRows([lastStickyRow])
         }
       } else if (dir === 'backward') {
-        const frozenRowDataIndex = data.rows.findIndex(r => r.id === frozenRows[0].id)
+        const frozenRowDataIndex = data.rows.findIndex(
+          r => r.id === frozenRows[0].id
+        )
 
         if (scrollRowDataIndex < frozenRowDataIndex) {
           const lastRows = data.rows.slice(0, frozenRowDataIndex)
-          const stickyRow = findLast(row => row.model === 'TreeInstance', lastRows)
+          const stickyRow = findLast(
+            row => row.model === 'TreeInstance',
+            lastRows
+          )
           if (stickyRow) {
             setFrozenRows([stickyRow])
           }
@@ -178,14 +205,11 @@ export const FieldsetTable = ({
 
   React.useEffect(() => setData(getData()), [element])
 
-  React.useEffect(
-    () => {
-      if (tableRef.current) {
-        scrollToGridItem(data, tableRef.current, scrollToIds, onScrollTo)
-      }
-    },
-    [tableRef.current, scrollToIds]
-  )
+  React.useEffect(() => {
+    if (tableRef.current) {
+      scrollToGridItem(data, tableRef.current, scrollToIds, onScrollTo)
+    }
+  }, [tableRef.current, scrollToIds])
 
   return (
     <AutoResizer>

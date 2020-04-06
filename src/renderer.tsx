@@ -18,7 +18,7 @@ process.env.REALM_DISABLE_ANALYTICS = 'true'
 
 import { renderCurrentWindow } from './main/windowManager/windows/WindowComponent'
 
-const appElement = document.getElementById('app')
+const appElement = document.getElementById('App')
 
 if (!isDevelopment) {
   const window = renderCurrentWindow()

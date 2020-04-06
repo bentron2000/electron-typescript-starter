@@ -1,5 +1,7 @@
-import { StagePermission } from '@models'
-import { StageEntity, SeatEntity } from '..'
+import { StagePermission } from '@models/StagePermission'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
 
 export class StagePermissionEntity {
   public static schema: Realm.ObjectSchema = {

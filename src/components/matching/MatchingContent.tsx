@@ -2,17 +2,18 @@ import * as React from 'react'
 import pluralize from 'pluralize'
 
 import { tDflatMap, tDfindById, tDfilter } from '@models/TreeDefinition'
-import { useStoreState, useStoreActions } from '@redux/store'
-import { PendingAsset, TreeInstance } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
+import { TreeInstance, tIflatMap } from '@models/TreeInstance'
 import { LoupeRealmErrorResponse } from '@models/ipc'
-import { useGridSelect } from '@components/helpers/useGridSelect'
 
+import { useStoreState, useStoreActions } from '@redux/store'
+
+import { useGridSelect } from '@components/helpers/useGridSelect'
 import { MatchingLeftPanel } from './MatchingLeftPanel'
 import { MatchingRightPanel } from './MatchingRightPanel'
-import { useToasts } from '../shared/toast/ToastProvider'
-import { Flex, Select, Heading, Text, Box, Loading } from '../shared'
-import { theme } from '../shared/Theme/theme'
-import { tIflatMap } from '@models/TreeInstance'
+import { useToasts } from '@components/shared/toast/ToastProvider'
+import { Flex, Select, Heading, Text, Box, Loading } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 export interface MatchingContent {}
 

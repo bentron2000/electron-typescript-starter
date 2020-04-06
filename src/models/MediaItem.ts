@@ -1,4 +1,5 @@
-import { MediaState, TreeInstance } from '@models'
+import { MediaState } from '@models/MediaState'
+import { TreeInstance } from '@models/TreeInstance'
 
 export interface NewMediaItem {
   treeInstance: TreeInstance
@@ -20,6 +21,6 @@ export function buildMediaItem(mi: Partial<MediaItem>): MediaItem {
     name: '',
     treeInstanceId: undefined,
     states: [],
-    ...mi
+    ...mi,
   }
 }

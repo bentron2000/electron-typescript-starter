@@ -1,5 +1,8 @@
 import { ipcMain, IpcMainEvent } from 'electron'
-import { Stage, Repository } from '@models'
+import { Stage } from '@models/Stage'
+import { Repository } from '@models/Repository'
+
+console.log('WHERE ARE WE RUNNING THIS??')
 
 export const apmListeners = () => {
   // Background Processing
@@ -24,6 +27,7 @@ export const apmListeners = () => {
 
   // Add background processes to the available array
   ipcMain.on('ready', (event: IpcMainEvent, _arg: string) => {
+    console.log('ADDING BACKGROUND APM TO AVAILABLE ARRAY')
     available.push(event.sender)
     performTask()
   })
@@ -36,15 +40,17 @@ export const apmListeners = () => {
     'ingest',
     (
       event: IpcMainEvent,
-      selectedFiles: string[],
+      selectedFiles: string[] | undefined,
       stage: Stage,
       repo: Repository,
       dbWindowId: number
     ) => {
-      const addIngestTask = (fileName: string) =>
-        tasks.push(['ingest', [fileName, stage, repo, dbWindowId]])
-      selectedFiles.map(addIngestTask)
-      performTask()
+      if (selectedFiles) {
+        const addIngestTask = (fileName: string) =>
+          tasks.push(['ingest', [fileName, stage, repo, dbWindowId]])
+        selectedFiles.map(addIngestTask)
+        performTask()
+      }
     }
   )
 }

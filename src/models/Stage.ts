@@ -1,12 +1,12 @@
-import {
-  MediaState,
-  StageTransition,
-  Ctx,
-  PendingAsset,
-  Repository,
-} from '@models'
-import { RequireAtLeast } from '@helpers/typeScriptHelpers'
 import { ipcRenderer, Event } from 'electron'
+
+import { Ctx } from '@models/Ctx'
+import { MediaState } from '@models/MediaState'
+import { Repository } from '@models/Repository'
+import { StageTransition } from '@models/StageTransition'
+import { PendingAsset } from '@models/PendingAsset'
+
+import { RequireAtLeast } from '@helpers/typeScriptHelpers'
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
 export type UpdateStageWithId = RequireAtLeast<Partial<Stage>, 'id'>

@@ -2,17 +2,20 @@ import * as React from 'react'
 import pluralize from 'pluralize'
 
 import { useStoreState, useStoreActions } from '@redux/store'
-import { TITreeItem } from '@components/helpers/treeHelpers'
-import { TreeInstance } from '@models'
+import {
+  TreeInstance,
+  tIflatMap,
+  buildTreeInstance,
+} from '@models/TreeInstance'
 import { LoupeRealmErrorResponse } from '@models/ipc'
 
-import { Flex, Loading, Box, Heading, Text } from '../../shared'
-import { theme } from '../../shared/Theme/theme'
+import { Flex, Loading, Box, Heading, Text } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
+import { useToasts } from '@components/shared/toast/ToastProvider'
+import { TITreeItem } from '@components/helpers/treeHelpers'
 import { TreeInstances } from './TreeInstances'
 import { TreeDefinitions } from './TreeDefinitions'
 import { FlatTreeInstances } from './FlatTreeInstances'
-import { useToasts } from '../../shared/toast/ToastProvider'
-import { tIflatMap, buildTreeInstance } from '@models/TreeInstance'
 
 const ToastContent = ({
   action,

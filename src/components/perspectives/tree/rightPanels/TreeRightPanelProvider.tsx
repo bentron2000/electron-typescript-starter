@@ -3,8 +3,13 @@ import { any } from 'ramda'
 import { useHistory } from 'react-router'
 
 import { useStoreState, useStoreActions } from '@redux/store'
+
+import { Project } from '@models/Project'
+import { nestedRelators } from '@models/Element'
 import { numStaticElements } from '@models/Section'
-import { Project, TreeDefinition, TreeInstance } from '@models'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance } from '@models/TreeInstance'
+
 import { AccordionItem } from '@components/shared/accordion/Accordion'
 
 import {
@@ -13,7 +18,6 @@ import {
   TreeSettingsPane,
   TreeElementsPane,
 } from '.'
-import { nestedRelators } from '@models/Element'
 
 type RightPanelMenuItem = AccordionItem & { hidden?: boolean }
 

@@ -1,4 +1,4 @@
-import { MediaState } from '@models'
+import { MediaState } from '@models/MediaState'
 import { Action, action, Thunk, thunk } from 'easy-peasy'
 import { LoupeModel } from '..'
 import { ipcSubscribe } from '@redux/ipc'

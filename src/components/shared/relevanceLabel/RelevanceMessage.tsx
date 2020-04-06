@@ -1,12 +1,12 @@
 import * as React from 'react'
 import pluralize from 'pluralize'
 
-import { TreeDefinition, Element } from '@models'
-
-import { Text } from '..'
-import { theme } from '../Theme/theme'
-import { tDfindById } from '@models/TreeDefinition'
+import { TreeDefinition, tDfindById } from '@models/TreeDefinition'
 import { tIfindById } from '@models/TreeInstance'
+import { Element } from '@models/Element'
+
+import { Text } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 /**
  * --------------------------------------------------

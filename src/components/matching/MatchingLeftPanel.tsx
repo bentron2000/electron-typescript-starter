@@ -1,14 +1,25 @@
 import * as React from 'react'
-import { Box, Asset, Grid, Text, Collapsible, Button, Icon } from '../shared'
-import { theme } from '../shared/Theme/theme'
+
 import { Match, Matches } from '@models/Match'
-import { PendingAsset } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
+
+import {
+  Box,
+  Asset,
+  Grid,
+  Text,
+  Collapsible,
+  Button,
+  Icon,
+} from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 import { useGridSelect } from '@components/helpers/useGridSelect'
 import {
   createContext,
   generateCompareFunc,
 } from '@utils/Helpers/AutoMatching/autoMatch'
 import { useStoreState } from '@redux/store'
+
 import { fileNamepredicates } from '@utils/Helpers/AutoMatching/FileNamePredicates'
 
 interface MatchedPanel {

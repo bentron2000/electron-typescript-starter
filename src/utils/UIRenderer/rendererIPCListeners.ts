@@ -1,5 +1,5 @@
-import { ipcRenderer } from 'electron'
-import { Stage } from '@models'
+import { ipcRenderer, remote } from 'electron'
+import { Stage } from '@models/Stage'
 import { store } from '@redux/store'
 
 export const logToMain = (message: string) => {
@@ -20,4 +20,6 @@ export const rendererIPCListeners = () => {
     store.dispatch.app.toggleRightPanel(false) // close the right panel
     store.dispatch.matching.ui.setIncoming(true) // trigger matching redirect
   })
+  // Send a ready signal
+  ipcRenderer.sendTo(remote.getGlobal('windowlist')['db-window'], 'UI_ready')
 }

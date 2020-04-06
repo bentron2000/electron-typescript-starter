@@ -1,6 +1,6 @@
 import { Action, Thunk, action, thunk } from 'easy-peasy'
 import { LoupeModel } from '..'
-import { TreeDefinition } from '@models'
+import { TreeDefinition } from '@models/TreeDefinition'
 
 export interface UIPart {
   rightPanelWasOpen: boolean

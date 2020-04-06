@@ -1,7 +1,11 @@
 import * as fs from 'fs'
 import { ipcRenderer } from 'electron'
-import { emptyProject } from './emptyProjectTemplate'
-import { TemplateEntity, TeamEntity, SeatEntity, ProjectEntity } from '@backend'
+import { emptyProject } from '@backend/mockdata/emptyProjectTemplate'
+
+import { TeamEntity } from '@backend/schema/TeamEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { TemplateEntity } from '@backend/schema/TemplateEntity'
 
 const AUTO_TEMPLATE_FOLDER = `${__dirname}/loadAsTemplates`
 const AUTO_PROJECT_FOLDER = `${__dirname}/loadAsNewProjects`

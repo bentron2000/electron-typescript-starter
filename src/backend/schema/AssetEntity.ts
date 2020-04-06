@@ -1,6 +1,9 @@
 import { v4 as uuid } from 'uuid'
-import { Ctx, Asset } from '@models'
-import { MediaStateEntity, AssetLocationEntity, RepositoryEntity } from '..'
+import { Ctx } from '@models/Ctx'
+import { Asset } from '@models/Asset'
+import { MediaStateEntity } from '@backend/schema/MediaStateEntity'
+import { AssetLocationEntity } from '@backend/schema/AssetLocationEntity'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
 
 export class AssetEntity {
   public static schema: Realm.ObjectSchema = {

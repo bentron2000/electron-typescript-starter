@@ -3,9 +3,10 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import styled, { css, StyledComponent } from 'styled-components'
 
 import { useStoreActions } from '@redux/store'
-import { Team, Project } from '@models'
+import { Team } from '@models/Team'
+import { Project } from '@models/Project'
 
-import { theme } from '../shared/Theme/theme'
+import { theme } from '@components/shared/Theme/theme'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,7 +17,7 @@ import {
   Select,
   Avatar,
   Flex,
-} from '../shared'
+} from '@components/shared'
 
 const bcHoverColor = theme.elementLightGrey
 

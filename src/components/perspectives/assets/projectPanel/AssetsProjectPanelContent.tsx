@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useStoreState, useStoreActions } from '@redux/store'
 
 import {
   Button,
@@ -11,10 +10,12 @@ import {
   theme,
   Heading,
 } from '@components/shared'
-import { Stage } from '@models'
-import { importFiles } from '@models/PendingAsset'
 import { validIToastOptsTypes } from '@components/shared/toast/ToastProvider'
 import { ConfigureRepoModal } from '@components/shared/createRepositoryModal/ConfigureRepoModal'
+
+import { Stage } from '@models/Stage'
+import { importFiles } from '@models/PendingAsset'
+import { useStoreState, useStoreActions } from '@redux/store'
 
 export const AssetsProjectPanelContent = () => {
   const { addToast } = useToasts()

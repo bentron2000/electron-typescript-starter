@@ -1,16 +1,16 @@
-import {
-  TreeDefinitionEntity,
-  MediaItemEntity,
-  ElementDataEntity,
-  ElementEntity,
-} from '..'
 import { v4 as uuid } from 'uuid'
 import { path } from 'ramda'
 
-import { Ctx, TreeInstance } from '@models'
+import { TreeInstance } from '@models/TreeInstance'
+import { Ctx } from '@models/Ctx'
 import { buildElementData } from '@models/ElementData'
 
-import { FieldValueEntity } from './FieldValueEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { ElementDataEntity } from '@backend/schema/ElementDataEntity'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { MediaItemEntity } from '@backend/schema/MediaItemEntity'
+import { FieldValueEntity } from '@backend/schema/FieldValueEntity'
+
 import {
   LoupeRealmResponseCallback,
   renderSuccess,
@@ -82,7 +82,10 @@ export class TreeInstanceEntity {
     }
   }
 
-  public static toTemplate(entity: TreeInstanceEntity, _options?: any): TITemplate {
+  public static toTemplate(
+    entity: TreeInstanceEntity,
+    _options?: any
+  ): TITemplate {
     return {
       id: `template(${entity.id})`,
       name: entity.name,

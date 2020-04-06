@@ -1,4 +1,7 @@
-import { Team, StagePermission, ProjectPermission, Repository } from '.'
+import { Team } from '@models/Team'
+import { StagePermission } from '@models/StagePermission'
+import { ProjectPermission } from '@models/ProjectPermission'
+import { Repository } from '@models/Repository'
 
 //
 // The canonical definition of a Seat (the level of nesting defined here will

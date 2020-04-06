@@ -1,5 +1,5 @@
 import { Action, action, Computed, computed } from 'easy-peasy'
-import { MediaState } from '@models'
+import { MediaState } from '@models/MediaState'
 import { LoupeModel } from '..'
 import { mediaStateFilter } from '@components/helpers/assetsHelpers'
 
@@ -26,8 +26,8 @@ export const mediaStateFilterPart: MediaStateFilterPart = {
       (_state, storeState) =>
         storeState.assetPerspective.stage.current
           ? storeState.assetPerspective.stage.current.mediaStates
-          : []
+          : [],
     ],
     mediaStateFilter
-  )
+  ),
 }

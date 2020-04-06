@@ -1,3 +1,3 @@
-import { Seat } from '.'
+import { Seat } from '@models/Seat'
 // TODO Design a universal CTX object...
 export type Ctx = Seat | undefined | null

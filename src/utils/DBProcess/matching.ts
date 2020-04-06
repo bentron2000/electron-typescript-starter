@@ -1,15 +1,16 @@
 import { v4 as uuid } from 'uuid'
 
+import { MediaItem, buildMediaItem } from '@models/MediaItem'
+import { MediaState, buildMediaState } from '@models/MediaState'
+import { Asset } from '@models/Asset'
+import { PendingAsset } from '@models/PendingAsset'
+import { Ctx } from '@models/Ctx'
 import { Matches } from '@models/Match'
-import { PendingAsset, Ctx, Asset, MediaItem, MediaState } from '@models'
-import {
-  AssetEntity,
-  MediaItemEntity,
-  MediaStateEntity,
-  PendingAssetEntity,
-} from '@backend'
-import { buildMediaState } from '@models/MediaState'
-import { buildMediaItem } from '@models/MediaItem'
+
+import { MediaItemEntity } from '@backend/schema/MediaItemEntity'
+import { MediaStateEntity } from '@backend/schema/MediaStateEntity'
+import { AssetEntity } from '@backend/schema/AssetEntity'
+import { PendingAssetEntity } from '@backend/schema/PendingAssetEntity'
 
 const assetFromPA = (pa: PendingAsset): Asset => {
   return {

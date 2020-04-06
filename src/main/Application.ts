@@ -1,27 +1,10 @@
-////////////////////////////////////////////////////////////////////////////
-//
-// Copyright 2018 Realm Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-////////////////////////////////////////////////////////////////////////////
-
 import { app, dialog, Menu } from 'electron'
 
 import { LOUPE_PROTOCOL } from '../constants'
-// import { Updater } from './Updater'
 import { WindowManager } from './windowManager/WindowManager'
 import { getDefaultMenuTemplate } from './MainMenu'
+import { mainIPCListeners } from '@utils/Main/mainIPCListeners'
+import { apmListeners } from '@utils/Main/apmListeners'
 
 export class Application {
   public static sharedApplication = new Application()
@@ -31,7 +14,7 @@ export class Application {
 
   // All files opened while app is loading will be stored on this array and opened when app is ready
   // @ts-ignore
-  // private delayedRealmOpens: string[] = []
+  private delayedRealmOpens: string[] = []
 
   // All urls opened while app is loading will be stored in this array and opened when app is ready
   // @ts-ignore
@@ -74,31 +57,34 @@ export class Application {
     return app.getPath('userData')
   }
 
-  // Example of how to use the window manager
-  // public showConnectToServer(
-  //   props: IConnectToServerWindowProps,
-  // ): Promise<void> {
-  //   const { window, existing } = this.windowManager.createWindow({
-  //     type: 'connect-to-server',
-  //     props,
-  //   });
+  ////////////////////////////////////////////
+  // WINDOW DECLARATIONS
+  ////////////////////////////////////////////
 
-  //   if (existing) {
-  //     window.focus();
-  //     return Promise.resolve();
-  //   } else {
-  //     return new Promise<undefined>(resolve => {
-  //       window.show();
-  //       window.webContents.once('did-finish-load', () => {
-  //         resolve();
-  //       });
-  //     });
-  //   }
-  // }
-
+  // SPLASH WINDOW
   public showSplash(): Promise<void> {
     const { window, existing } = this.windowManager.createWindow({
       type: 'splash',
+      props: {},
+    })
+
+    if (existing) {
+      window.focus()
+      return Promise.resolve()
+    } else {
+      return new Promise(resolve => {
+        window.once('ready-to-show', () => {
+          window.show()
+          resolve()
+        })
+      })
+    }
+  }
+
+  // UI WINDOW OLD - TO DELETE
+  public showOldUIWindow(): Promise<void> {
+    const { window, existing } = this.windowManager.createWindow({
+      type: 'uio-window',
       props: {},
     })
 
@@ -117,6 +103,7 @@ export class Application {
     }
   }
 
+  // UI WINDOW
   public showUIWindow(): Promise<void> {
     const { window, existing } = this.windowManager.createWindow({
       type: 'ui-window',
@@ -134,21 +121,57 @@ export class Application {
           window.show()
           resolve()
         })
-        // // Check for updates, every time the contents has loaded
-        // // window.webContents.on('did-finish-load', () => {
-        // //   // this.updater.checkForUpdates(true)
-        // // })
-        // // this.updater.addListeningWindow(window)
-        // window.once('close', () => {
-        //   // this.updater.removeListeningWindow(window)
-        // })
       })
     }
   }
 
-  // public checkForUpdates() {
-  //   this.updater.checkForUpdates()
-  // }
+  // DB WINDOW
+  public showDBWindow(): Promise<void> {
+    const { window, existing } = this.windowManager.createWindow({
+      type: 'db-window',
+      props: {},
+    })
+
+    if (existing) {
+      window.focus()
+      return Promise.resolve()
+    } else {
+      return new Promise(resolve => {
+        // Save this for later
+        // Show the window, the first time its ready-to-show
+        window.once('ready-to-show', () => {
+          // window.show() // uncomment to show the DB window
+          resolve()
+        })
+      })
+    }
+  }
+
+  // APM WINDOW
+  public showAPMWindow(): Promise<void> {
+    const { window, existing } = this.windowManager.createWindow({
+      type: 'apm-window',
+      props: {},
+    })
+
+    if (existing) {
+      window.focus()
+      return Promise.resolve()
+    } else {
+      return new Promise(resolve => {
+        // Save this for later
+        // Show the window, the first time its ready-to-show
+        window.once('ready-to-show', () => {
+          // window.show() // uncomment to show the DB window
+          resolve()
+        })
+      })
+    }
+  }
+
+  ////////////////////////////////////////////
+  // PRIVATE
+  ////////////////////////////////////////////
 
   private addAppListeners() {
     app.addListener('ready', this.onReady)
@@ -167,7 +190,12 @@ export class Application {
     if (this.windowManager.windows.length === 0) {
       // Wait for the greeting window to show - if no other windows are open
       await this.showSplash()
-      await this.showUIWindow()
+      mainIPCListeners()
+      apmListeners()
+      // await this.showOldUIWindow()
+      this.showDBWindow()
+      this.showUIWindow()
+      this.showAPMWindow()
     }
     this.performDelayedTasks()
   }

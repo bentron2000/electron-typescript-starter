@@ -1,27 +1,25 @@
-import {
-  ProjectEntity,
-  StagePermissionEntity,
-  ProjectPermissionEntity,
-  TreeDefinitionEntity,
-  TreeInstanceEntity,
-  ElementDataEntity,
-  MediaStateEntity,
-  StageTransitionEntity,
-  SeatEntity,
-  StageEntity,
-  TeamEntity,
-  UserEntity,
-  SectionEntity,
-  ElementEntity,
-  MediaItemEntity,
-  AssetEntity,
-  SubscriptionEntity,
-  PendingAssetEntity,
-  FieldDefinitionEntity,
-  FieldValueEntity,
-  RepositoryEntity,
-  TemplateEntity,
-} from '..'
+import { TeamEntity } from '@backend/schema/TeamEntity'
+import { StageEntity } from '@backend/schema/StageEntity'
+import { StagePermissionEntity } from '@backend/schema/StagePermissionEntity'
+import { UserEntity } from '@backend/schema/UserEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { ProjectPermissionEntity } from '@backend/schema/ProjectPermissionEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { ElementDataEntity } from '@backend/schema/ElementDataEntity'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { MediaItemEntity } from '@backend/schema/MediaItemEntity'
+import { MediaStateEntity } from '@backend/schema/MediaStateEntity'
+import { AssetEntity } from '@backend/schema/AssetEntity'
+import { PendingAssetEntity } from '@backend/schema/PendingAssetEntity'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
+import { SubscriptionEntity } from '@backend/schema/SubscriptionEntity'
+import { StageTransitionEntity } from '@backend/schema/StageTransitionEntity'
+import { FieldDefinitionEntity } from '@backend/schema/FieldDefinitionEntity'
+import { FieldValueEntity } from '@backend/schema/FieldValueEntity'
+import { TemplateEntity } from '@backend/schema/TemplateEntity'
 
 import * as loupeEntities from '@backend'
 

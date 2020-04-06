@@ -2,26 +2,24 @@ import { Action, action, Thunk, thunk, Computed, computed } from 'easy-peasy'
 import { intersection, groupBy, prop, sort, findIndex, propEq } from 'ramda'
 
 import {
-  Section,
   Element,
-  FieldDefinition,
-  FieldValue,
-  ElementData,
-  ElementRelevance,
-  SaveTemplatePayload,
-  TreeInstance,
-} from '@models'
-import {
   updateElementRelevance,
   nestedRelators,
   hasTiRelevance,
 } from '@models/Element'
+import { Section } from '@models/Section'
+import { TreeInstance } from '@models/TreeInstance'
+import { ElementData } from '@models/ElementData'
+import { FieldDefinition } from '@models/FieldDefinition'
+import { FieldValue } from '@models/FieldValue'
+import { ElementRelevance } from '@models/ElementRelevance'
+import { SaveTemplatePayload } from '@models/Template'
+import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
+
+import { LoupeModel } from '.'
 import { ipcUpdate, ipcDelete, ipcCreate } from '@redux/ipc'
 import { IRhpState, filterRhpPayload } from '@redux/state/helpers/rhpState'
-import { LoupeModel } from '.'
 import { briefFilter, TITreeItem } from '@components/helpers'
-
-import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
 
 import { RequireAtLeast } from '@helpers/typeScriptHelpers'
 import { tiToTreeItem } from '@components/helpers/treeHelpers'

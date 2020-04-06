@@ -8,7 +8,7 @@ import {
   IconContainer,
 } from './DiagramContainers'
 import { typePicker, StageType } from '@helpers/typePicker'
-import { Stage } from '@models'
+import { Stage } from '@models/Stage'
 import {
   Flex,
   Icon,

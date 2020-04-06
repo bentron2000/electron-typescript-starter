@@ -8,60 +8,60 @@ import { WindowType } from './main/windowManager/windows/WindowOptions'
 
 type RemovalCallback = () => void
 
-class RealmStudioStore {
-  public readonly KEY_SHOW_PARTIAL_REALMS = 'realmlist.show-partial-realms'
-  public readonly KEY_SHOW_SYSTEM_REALMS = 'realmlist.show-system-realms'
-  public readonly KEY_SHOW_SYSTEM_USERS = 'userlist.show-system-users'
-  public readonly KEY_SHOW_SYSTEM_CLASSES = 'browser.show-system-classes'
-  public readonly KEY_SHOW_INTERNAL_FEATURES = 'general.show-internal-features'
+class LoupeElectronStore {
+  // public readonly KEY_SHOW_PARTIAL_REALMS = 'realmlist.show-partial-realms'
+  // public readonly KEY_SHOW_SYSTEM_REALMS = 'realmlist.show-system-realms'
+  // public readonly KEY_SHOW_SYSTEM_USERS = 'userlist.show-system-users'
+  // public readonly KEY_SHOW_SYSTEM_CLASSES = 'browser.show-system-classes'
+  // public readonly KEY_SHOW_INTERNAL_FEATURES = 'general.show-internal-features'
   public readonly KEY_WINDOW_OPTIONS = 'window-options'
 
   private store = new ElectronStore()
 
-  public toggleShowPartialRealms() {
-    const currentValue = this.shouldShowPartialRealms()
-    this.store.set(this.KEY_SHOW_PARTIAL_REALMS, !currentValue)
-  }
+  // public toggleShowPartialRealms() {
+  //   const currentValue = this.shouldShowPartialRealms()
+  //   this.store.set(this.KEY_SHOW_PARTIAL_REALMS, !currentValue)
+  // }
 
-  public toggleShowSystemRealms() {
-    const currentValue = this.shouldShowSystemRealms()
-    this.store.set(this.KEY_SHOW_SYSTEM_REALMS, !currentValue)
-  }
+  // public toggleShowSystemRealms() {
+  //   const currentValue = this.shouldShowSystemRealms()
+  //   this.store.set(this.KEY_SHOW_SYSTEM_REALMS, !currentValue)
+  // }
 
-  public toggleShowSystemUsers() {
-    const currentValue = this.shouldShowSystemUsers()
-    this.store.set(this.KEY_SHOW_SYSTEM_USERS, !currentValue)
-  }
+  // public toggleShowSystemUsers() {
+  //   const currentValue = this.shouldShowSystemUsers()
+  //   this.store.set(this.KEY_SHOW_SYSTEM_USERS, !currentValue)
+  // }
 
-  public toggleShowSystemClasses() {
-    const currentValue = this.shouldShowSystemClasses()
-    this.store.set(this.KEY_SHOW_SYSTEM_CLASSES, !currentValue)
-  }
+  // public toggleShowSystemClasses() {
+  //   const currentValue = this.shouldShowSystemClasses()
+  //   this.store.set(this.KEY_SHOW_SYSTEM_CLASSES, !currentValue)
+  // }
 
-  public toggleShowInternalFeatures() {
-    const currentValue = this.shouldShowInternalFeatures()
-    this.store.set(this.KEY_SHOW_INTERNAL_FEATURES, !currentValue)
-  }
+  // public toggleShowInternalFeatures() {
+  //   const currentValue = this.shouldShowInternalFeatures()
+  //   this.store.set(this.KEY_SHOW_INTERNAL_FEATURES, !currentValue)
+  // }
 
-  public shouldShowPartialRealms(): boolean {
-    return this.store.get(this.KEY_SHOW_PARTIAL_REALMS, false)
-  }
+  // public shouldShowPartialRealms(): boolean {
+  //   return this.store.get(this.KEY_SHOW_PARTIAL_REALMS, false)
+  // }
 
-  public shouldShowSystemRealms(): boolean {
-    return this.store.get(this.KEY_SHOW_SYSTEM_REALMS, false)
-  }
+  // public shouldShowSystemRealms(): boolean {
+  //   return this.store.get(this.KEY_SHOW_SYSTEM_REALMS, false)
+  // }
 
-  public shouldShowSystemUsers(): boolean {
-    return this.store.get(this.KEY_SHOW_SYSTEM_USERS, false)
-  }
+  // public shouldShowSystemUsers(): boolean {
+  //   return this.store.get(this.KEY_SHOW_SYSTEM_USERS, false)
+  // }
 
-  public shouldShowSystemClasses(): boolean {
-    return this.store.get(this.KEY_SHOW_SYSTEM_CLASSES, false)
-  }
+  // public shouldShowSystemClasses(): boolean {
+  //   return this.store.get(this.KEY_SHOW_SYSTEM_CLASSES, false)
+  // }
 
-  public shouldShowInternalFeatures(): boolean {
-    return this.store.get(this.KEY_SHOW_INTERNAL_FEATURES, false)
-  }
+  // public shouldShowInternalFeatures(): boolean {
+  //   return this.store.get(this.KEY_SHOW_INTERNAL_FEATURES, false)
+  // }
 
   // Window option related methods
   public setWindowOptions(
@@ -106,10 +106,10 @@ class RealmStudioStore {
   }
 }
 
-function createStore(): RealmStudioStore {
+function createStore(): LoupeElectronStore {
   // Export a store - if we're running in electron, null otherwise
   if (process.type) {
-    return new RealmStudioStore()
+    return new LoupeElectronStore()
   } else {
     // tslint:disable-next-line:no-console
     console.warn('Running outside electron, RealmStudioStore was not created')

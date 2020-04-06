@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loupe</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <!-- <link rel="stylesheet" href="./src/css/tree.css" />
+    <link rel="stylesheet" href="./src/css/react-base-table.css" /> -->
+    <link rel="stylesheet" href="https://use.typekit.net/fyz8mux.css" />
+  </head>
+  <body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0">
+    <div id="App"></div>
+    <script>
+      // Locate the renderer bundle and require it to start up the app
+      const electron = require('electron')
+      const path = require('path')
+      // This will be emitted to (and run from) the build directory by the WebPack file-loader
+      // which is why this require will resolve to the renderer bundle correctly.
+      // Simply loading a relative path fails when releasing a portable app for windows, instead
+      // we'll resolve the relative path of the renderer bundle to the running app's path.
+      const appPath = electron.remote.app.getAppPath()
+      const rendererBundlePath = path.resolve(
+        appPath,
+        './build/renderer.bundle.js'
+      )
+      require(rendererBundlePath)
+    </script>
+  </body>
+</html>

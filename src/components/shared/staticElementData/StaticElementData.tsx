@@ -13,7 +13,7 @@ import * as React from 'react'
 //   RenderInlineProps,
 // } from 'slate-react'
 
-import { ElementData } from '@models'
+import { ElementData } from '@models/ElementData'
 
 // import { Button, Flex, Text, theme } from '../'
 // import { StringField } from '../../fields/StringField'

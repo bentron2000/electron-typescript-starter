@@ -2,11 +2,14 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import pluralize from 'pluralize'
 
-import { useStoreState, useStoreActions } from '@redux/store'
-import { TreeDefinition, Section, Element } from '@models'
-import { LoupeRealmErrorResponse } from '@models/ipc'
+import { Section } from '@models/Section'
+import { Element } from '@models/Element'
+import { TreeDefinition } from '@models/TreeDefinition'
 
-import { theme } from '../../shared/Theme/theme'
+import { LoupeRealmErrorResponse } from '@models/ipc'
+import { useStoreState, useStoreActions } from '@redux/store'
+
+import { theme } from '@components/shared/Theme/theme'
 import {
   Collapsible,
   Flex,
@@ -16,9 +19,9 @@ import {
   Button,
   StatusTag,
   PopOver,
-} from '../../shared'
+} from '@components/shared'
 import { DisplayElement, AddElementPopOver } from '.'
-import { useToasts } from '../../shared/toast/ToastProvider'
+import { useToasts } from '@components/shared/toast/ToastProvider'
 
 const SectionContainer = styled.div<Pick<DisplaySection, 'selected'>>`
   border-radius: 5px;

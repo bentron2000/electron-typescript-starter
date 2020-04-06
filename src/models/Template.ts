@@ -1,28 +1,7 @@
-import { StageTemplate } from '@backend/schema/StageEntity'
-import { StageTransitionTemplate } from '@backend/schema/StageTransitionEntity'
-import { SectionTemplate } from '@backend/schema/SectionEntity'
-import { ElementTemplate } from '@backend/schema/ElementEntity'
-import { FieldDefinitionTemplate } from '@backend/schema/FieldDefinitionEntity'
-import { TDTemplate } from '@backend/schema/TreeDefinitionEntity'
-import { TITemplate } from '@backend/schema/TreeInstanceEntity'
-import { SectionPermissionTemplate } from '@backend/schema/SectionPermissionEntity'
-import { LoupeRealmResponse, renderError } from './ipc'
-import { v4 as uuid } from 'uuid'
 import { ipcRenderer } from 'electron'
+import { v4 as uuid } from 'uuid'
 
-export interface Template {
-  team: string
-  id: string
-  name: string
-  stages: StageTemplate[]
-  transitions: StageTransitionTemplate[]
-  sections: SectionTemplate[]
-  sectionPermissions: SectionPermissionTemplate[]
-  elements: ElementTemplate[]
-  fieldDefinitions: FieldDefinitionTemplate[]
-  treeDefinitions: TDTemplate[]
-  treeInstances: TITemplate[]
-}
+import { LoupeRealmResponse, renderError } from '@models/ipc'
 
 export interface TemplateInfo {
   team: string

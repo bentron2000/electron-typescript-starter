@@ -1,6 +1,7 @@
-import { LoupeRealmResponse } from './ipc'
 import { v4 as uuid } from 'uuid'
 import { ipcRenderer } from 'electron'
+
+import { LoupeRealmResponse } from '@models/ipc'
 
 export interface Repository {
   readonly id: string

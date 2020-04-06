@@ -1,15 +1,14 @@
 import { Action, action, Thunk, thunk, ActionOn, actionOn } from 'easy-peasy'
 
+import { SaveTemplatePayload } from '@models/Template'
+import { Project, NewProjectOptions } from '@models/Project'
+import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
+
 import { ipcSubscribe, ipcCreate } from '@redux/ipc'
 import { LoupeModel } from '@redux/state'
-import { Project } from '@models'
-
 import { briefPart, BriefPart } from '../BriefPart/BriefPart'
 import { stagePart, StagePart } from '../StagePart/StagePart'
 import { treePart, TreePart } from '../TreePart/TreePart'
-import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
-import { SaveTemplatePayload } from '@models'
-import { NewProjectOptions } from '@models/Project'
 
 export interface ProjectState {
   current: Project | undefined

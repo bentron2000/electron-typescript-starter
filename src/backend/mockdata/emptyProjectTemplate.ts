@@ -1,4 +1,4 @@
-import { Template } from '@models'
+import { Template } from '@backend/schema/TemplateEntity'
 
 export const emptyProject: Partial<Template> = {
   id: 'blank',

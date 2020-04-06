@@ -1,0 +1,8 @@
+// Config for madge dependency graphing utility
+{
+	"detectiveOptions": {
+		"ts": {
+			"mixedImports": true
+		}
+	}
+}

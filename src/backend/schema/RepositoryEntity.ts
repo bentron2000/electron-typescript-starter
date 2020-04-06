@@ -1,6 +1,8 @@
-import { Repository, Ctx } from '@models'
 import { v4 as uuid } from 'uuid'
 import * as path from 'path'
+import { Ctx } from '@models/Ctx'
+import { Repository } from '@models/Repository'
+import { RepoConfig } from '@models/Repository'
 
 import {
   AssetLocationEntity,
@@ -13,7 +15,6 @@ import {
   renderError,
   LoupeRealmResponseCallback,
 } from '@models/ipc'
-import { RepoConfig } from '@models/Repository'
 
 export class RepositoryEntity {
   public static schema: Realm.ObjectSchema = {

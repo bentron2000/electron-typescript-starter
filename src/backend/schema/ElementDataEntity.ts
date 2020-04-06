@@ -1,6 +1,9 @@
-import { TreeInstanceEntity, FieldValueEntity, ElementEntity } from '..'
 import { v4 as uuid } from 'uuid'
-import { Ctx, ElementData } from '../../models'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { FieldValueEntity } from '@backend/schema/FieldValueEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { Ctx } from '@models/Ctx'
+import { ElementData } from '@models/ElementData'
 import {
   LoupeRealmResponseCallback,
   renderSuccess,

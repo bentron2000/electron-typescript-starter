@@ -9,7 +9,8 @@ import {
   Box,
   useToasts,
 } from '@components/shared'
-import { Stage, Repository } from '@models'
+import { Stage } from '@models/Stage'
+import { Repository } from '@models/Repository'
 import { ConfigureRepoModal } from '@components/shared/createRepositoryModal/ConfigureRepoModal'
 import { AssignRepoModal } from '..'
 import { useStoreState, useStoreActions } from '@redux/store'

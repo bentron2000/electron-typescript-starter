@@ -1,5 +1,5 @@
 import { Computed, computed } from 'easy-peasy'
-import { Section } from '@models'
+import { Section } from '@models/Section'
 import { LoupeModel } from '..'
 import { briefFilter } from '@components/helpers'
 import { BriefFilter } from '../BriefPerspectiveState'

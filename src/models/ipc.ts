@@ -1,4 +1,4 @@
-import { Event } from 'electron'
+import { IpcRendererEvent } from 'electron'
 
 export interface LoupeRealmResponse<T = any> {
   status: 'success' | 'error'
@@ -43,10 +43,14 @@ export function renderError<T, E = any>(
   return { status: 'error', message, data }
 }
 
-export const ipcReply = (event: Event, ...args: any) => {
+export const ipcReply = (
+  event: IpcRendererEvent,
+  channel: string,
+  ...args: any
+) => {
   // incomplete types for IpcRendererEvent (https://electronjs.org/docs/api/structures/ipc-renderer-event)
   // @ts-ignore
-  event.sender.sendTo(event.senderId, ...args)
+  event.sender.sendTo(event.senderId, channel, ...args)
 }
 
 export const responseToTuple = async <T>(

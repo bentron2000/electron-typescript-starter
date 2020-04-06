@@ -2,7 +2,7 @@ import * as React from 'react'
 import pluralize from 'pluralize'
 
 import { LoupeRealmErrorResponse } from '@models/ipc'
-import { Stage } from '@models'
+import { Stage } from '@models/stage'
 import { useStoreState, useStoreActions } from '@redux/store'
 import {
   Button,

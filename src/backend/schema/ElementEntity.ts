@@ -1,25 +1,27 @@
 import { v4 as uuid } from 'uuid'
-import { ipcRenderer, Event } from 'electron'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
 import { intersection, path } from 'ramda'
-import {
-  TreeDefinitionEntity,
-  TreeInstanceEntity,
-  SectionEntity,
-  FieldDefinitionEntity,
-  ElementDataEntity,
-  ProjectEntity,
-  FieldValueEntity,
-} from '..'
-import { Element, Ctx, ElementData, ElementRelevance } from '@models'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { FieldDefinitionEntity } from '@backend/schema/FieldDefinitionEntity'
+import { ElementDataEntity } from '@backend/schema/ElementDataEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { FieldValueEntity } from '@backend/schema/FieldValueEntity'
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
+
+import { Ctx } from '@models/Ctx'
+import { Element } from '@models/Element'
+import { ElementData } from '@models/ElementData'
+import { ElementRelevance } from '@models/ElementRelevance'
+import { buildElementData } from '@models/ElementData'
+import { tIflatMap } from '@models/TreeInstance'
 import { LoupeRealmResponse, ipcReply } from '@models/ipc'
 import {
   LoupeRealmResponseCallback,
   renderSuccess,
   renderError,
 } from '@models/ipc'
-import { tIflatMap } from '@models/TreeInstance'
-import { buildElementData } from '@models/ElementData'
-import { INewTemplateEntities } from './TemplateEntity'
 
 export interface ElementTemplate {
   id: string
@@ -263,7 +265,7 @@ export class ElementEntity {
     ipcRenderer.on(
       'update-element-relevance',
       (
-        event: Event,
+        event: IpcRendererEvent,
         ctx: Ctx,
         payload: ElementRelevance,
         resChannel: string
@@ -649,7 +651,10 @@ export class ElementEntity {
     element.elementData
       .filter(
         ed =>
-          !intersection(ed.treeInstances.map(ti => ti.id), selectedTiIds).length
+          !intersection(
+            ed.treeInstances.map(ti => ti.id),
+            selectedTiIds
+          ).length
       )
       .forEach(ed => {
         realm.delete(ed.fields)

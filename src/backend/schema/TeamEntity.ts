@@ -1,5 +1,8 @@
-import { Team } from '@models'
-import { ProjectEntity, SeatEntity, TemplateEntity } from '..'
+import { Team } from '@models/Team'
+
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { TemplateEntity } from '@backend/schema/TemplateEntity'
 
 export class TeamEntity {
   public static schema: Realm.ObjectSchema = {

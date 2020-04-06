@@ -1,5 +1,6 @@
-import { TreeInstance, Ctx } from '@models'
 import { ipcRenderer, Event } from 'electron'
+import { TreeInstance } from '@models/TreeInstance'
+import { Ctx } from '@models/Ctx'
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
 export interface TreeDefinition {

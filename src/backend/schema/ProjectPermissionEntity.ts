@@ -1,7 +1,8 @@
-import { ProjectPermission } from '@models'
-import { SeatEntity, ProjectEntity } from '..'
 import { v4 as uuid } from 'uuid'
-import { INewTemplateEntities } from './TemplateEntity'
+import { ProjectPermission } from '@models/ProjectPermission'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
 
 export class ProjectPermissionEntity {
   public static schema: Realm.ObjectSchema = {

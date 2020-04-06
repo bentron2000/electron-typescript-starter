@@ -1,15 +1,20 @@
-import { ProjectEntity, TreeInstanceEntity } from '..'
-import { Ctx, TreeDefinition } from '../../models'
-import { ipcRenderer, Event } from 'electron'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
 import { v4 as uuid } from 'uuid'
 import { path } from 'ramda'
+
+import { TreeDefinition } from '@models/TreeDefinition'
+import { Ctx } from '@models/Ctx'
+
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { INewTemplateEntities } from '@backend/schema/TemplateEntity'
+
 import {
   LoupeRealmResponseCallback,
   renderSuccess,
   renderError,
   ipcReply,
 } from '@models/ipc'
-import { INewTemplateEntities } from './TemplateEntity'
 import {
   tdTemplateReduce,
   templateReducer,
@@ -234,7 +239,7 @@ export class TreeDefinitionEntity {
     // Tree for Project subscription listener
     ipcRenderer.on(
       'subscribe-to-project-tree',
-      async (event: Event, ctx: Ctx, projectId: string) => {
+      async (event: IpcRendererEvent, ctx: Ctx, projectId: string) => {
         const sendResult = (rootTD: TreeDefinition) => {
           ipcReply(event, 'update-project-tree', rootTD)
         }

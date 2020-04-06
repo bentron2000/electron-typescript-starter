@@ -5,8 +5,7 @@ import { TableDataRow, ITableCell } from './FieldsetTable'
 import { RowDataCell } from './RowDataCell'
 import { RowFieldCell } from './RowFieldCell'
 import { tIgetBranch, tIfindById, TreeInstance } from '@models/TreeInstance'
-import { tDfindById } from '../../../../models/TreeDefinition'
-import { TreeDefinition } from '@models'
+import { tDfindById, TreeDefinition } from '@models/TreeDefinition'
 
 const Row = styled.div`
   display: flex;

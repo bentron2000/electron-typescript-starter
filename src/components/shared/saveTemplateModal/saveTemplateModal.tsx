@@ -10,7 +10,7 @@ import {
   theme,
   useToasts,
 } from '@components/shared'
-import { SaveTemplatePayload } from '@models'
+import { SaveTemplatePayload } from '@models/Template'
 import { LoupeRealmResponse } from '@models/ipc'
 
 /**

@@ -1,4 +1,4 @@
-import { Stage } from '@models'
+import { Stage } from '@models/Stage'
 
 export interface StagePermission {
   readonly id: string

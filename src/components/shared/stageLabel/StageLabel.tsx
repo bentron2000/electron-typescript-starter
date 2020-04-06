@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Section, Stage } from '@models'
-import { Text, PopOver, Flex } from '..'
-import { theme } from '../Theme/theme'
+import { Stage } from '@models/Stage'
+import { Section } from '@models/Section'
+import { Text, PopOver, Flex } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 import pluralize from 'pluralize'
 import styled from 'styled-components'
 

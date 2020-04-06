@@ -13,7 +13,7 @@ import {
   BriefFilter,
 } from './BriefPerspectiveState'
 
-import { ElementRelevance } from '@models'
+import { ElementRelevance } from '@models/ElementRelevance'
 
 import { treePerspective, TreePerspectiveState } from './TreePerspectiveState'
 

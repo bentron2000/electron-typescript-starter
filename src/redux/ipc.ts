@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid'
 import { flatten } from 'ramda'
 
 import { LoupeRealmIPCSendResponse } from '@models/ipc'
-import { Ctx } from '@models'
+import { Ctx } from '@models/Ctx'
 import { ipcToDb } from './state/helpers/ipcDbWindowHelper'
 
 export function ipcSubscribe<T>(

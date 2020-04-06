@@ -1,6 +1,10 @@
 import * as React from 'react'
 import { useStoreState, useStoreActions } from '@redux/store'
-import { Section, Element, TreeDefinition, TreeInstance } from '@models'
+
+import { Section } from '@models/Section'
+import { Element } from '@models/Element'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance } from '@models/TreeInstance'
 
 import {
   SectionFilterPane,

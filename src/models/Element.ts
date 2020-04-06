@@ -1,17 +1,21 @@
-import {
-  ElementData,
-  Ctx,
-  FieldDefinition,
-  TreeDefinition,
-  TreeInstance,
-  ElementRelevance,
-} from '.'
-import { LoupeRealmIPCSendResponse } from '@models/ipc'
 import { ipcRenderer } from 'electron'
 import { v4 as uuid } from 'uuid'
 import { all, any, union } from 'ramda'
-import { tDfindById } from './TreeDefinition'
-import { tIfindById, tIflatMap, tIgetBranchByTargetId } from './TreeInstance'
+
+import { TreeDefinition, tDfindById } from './TreeDefinition'
+import {
+  TreeInstance,
+  tIfindById,
+  tIflatMap,
+  tIgetBranchByTargetId,
+} from './TreeInstance'
+import { ElementData } from '@models/ElementData'
+import { FieldDefinition } from '@models/FieldDefinition'
+import { Ctx } from '@models/Ctx'
+import { ElementRelevance } from '@models/ElementRelevance'
+
+import { LoupeRealmIPCSendResponse } from '@models/ipc'
+
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
 export interface Element {

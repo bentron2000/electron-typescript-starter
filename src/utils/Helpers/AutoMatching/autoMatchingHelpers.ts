@@ -1,4 +1,4 @@
-import { PendingAsset } from '@models'
+import { PendingAsset } from '@models/PendingAsset'
 import { IAMInput } from './autoMatch'
 
 // Helpers

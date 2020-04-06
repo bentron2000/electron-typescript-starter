@@ -11,7 +11,7 @@ import {
   useToasts,
 } from '@components/shared'
 import { useStoreActions, useStoreState } from '@redux/store'
-import { Repository } from '@models'
+import { Repository } from '@models/Repository'
 import { buildSubscription } from '@models/Subscription'
 
 /**

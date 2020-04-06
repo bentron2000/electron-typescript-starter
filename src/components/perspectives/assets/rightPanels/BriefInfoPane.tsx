@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Element, TreeInstance, Stage } from '@models'
+import { Element } from '@models/Element'
+import { TreeInstance } from '@models/TreeInstance'
+import { Stage } from '@models/Stage'
 import {
   Box,
   Button,

@@ -1,4 +1,8 @@
-import { Seat, Ctx, Project } from '.'
+import { Project } from '@models/Project'
+import { Seat } from '@models/Seat'
+
+import { Ctx } from '@models/Ctx'
+
 import { ipcRenderer, Event } from 'electron'
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
@@ -32,8 +36,10 @@ export function attemptLogin(
   setter: (success: boolean) => void
 ) {
   console.log('LOGIN - MODEL', user)
-  ipcRenderer.removeAllListeners('try-login') // clear old listeners
-  ipcRenderer.on('try-login', (_: Event, success: boolean) => setter(success)) // set new listener
-
+  ipcRenderer.removeAllListeners('receive-login') // clear old listeners
+  ipcRenderer.on('receive-login', (_: Event, success: boolean) =>
+    setter(success)
+  )
+  console.log('SENDING LOGIN')
   ipcToDb('try-login', user)
 }

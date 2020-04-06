@@ -1,4 +1,4 @@
-import { Repository } from '@models'
+import { Repository } from '@models/Repository'
 
 export interface AssetLocation {
   readonly id: string
@@ -12,6 +12,6 @@ export function buildAssetLocation(as: Partial<AssetLocation>): AssetLocation {
     id: '',
     model: 'AssetLocation',
     assetId: '',
-    ...as
+    ...as,
   }
 }

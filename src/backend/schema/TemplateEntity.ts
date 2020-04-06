@@ -1,22 +1,33 @@
-import { Template, Ctx, SaveTemplatePayload, TemplateInfo } from '@models'
-import {
-  StageEntity,
-  StageTransitionEntity,
-  ProjectEntity,
-  SectionEntity,
-  SectionPermissionEntity,
-  ElementEntity,
-  FieldDefinitionEntity,
-  TreeDefinitionEntity,
-  TreeInstanceEntity,
-  TeamEntity,
-} from '@backend'
 import { uniq } from 'ramda'
 import { v4 as uuid } from 'uuid'
 import * as fs from 'fs'
 import { mkDir as mkDirR } from '@utils/Helpers/fsHelpers'
 import { RequireAtLeast } from '@helpers/typeScriptHelpers'
 import { ipcRenderer, Event } from 'electron'
+
+import { Ctx } from '@models/Ctx'
+import { TemplateInfo, SaveTemplatePayload } from '@models/Template'
+
+import { StageTemplate } from '@backend/schema/StageEntity'
+import { StageTransitionTemplate } from '@backend/schema/StageTransitionEntity'
+import { SectionTemplate } from '@backend/schema/SectionEntity'
+import { ElementTemplate } from '@backend/schema/ElementEntity'
+import { FieldDefinitionTemplate } from '@backend/schema/FieldDefinitionEntity'
+import { TDTemplate } from '@backend/schema/TreeDefinitionEntity'
+import { TITemplate } from '@backend/schema/TreeInstanceEntity'
+import { SectionPermissionTemplate } from '@backend/schema/SectionPermissionEntity'
+
+import { TeamEntity } from '@backend/schema/TeamEntity'
+import { StageEntity } from '@backend/schema/StageEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { SectionPermissionEntity } from '@backend/schema/SectionPermissionEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { TreeInstanceEntity } from '@backend/schema/TreeInstanceEntity'
+import { StageTransitionEntity } from '@backend/schema/StageTransitionEntity'
+import { FieldDefinitionEntity } from '@backend/schema/FieldDefinitionEntity'
+
 import {
   LoupeRealmResponseCallback,
   renderError,
@@ -322,6 +333,20 @@ export class TemplateEntity {
     const out = currentIds.reduce(replacer, templateString)
     return JSON.parse(out) as Template
   }
+}
+
+export interface Template {
+  team: string
+  id: string
+  name: string
+  stages: StageTemplate[]
+  transitions: StageTransitionTemplate[]
+  sections: SectionTemplate[]
+  sectionPermissions: SectionPermissionTemplate[]
+  elements: ElementTemplate[]
+  fieldDefinitions: FieldDefinitionTemplate[]
+  treeDefinitions: TDTemplate[]
+  treeInstances: TITemplate[]
 }
 
 export interface INewTemplateEntities {

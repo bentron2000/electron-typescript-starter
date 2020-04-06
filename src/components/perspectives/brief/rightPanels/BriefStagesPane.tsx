@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { all, any, union } from 'ramda'
 
-import { Stage, Section } from '@models'
+import { Stage } from '@models/Stage'
+import { Section } from '@models/Section'
 import { LoupeRealmErrorResponse, LoupeRealmResponse } from '@models/ipc'
 import { useStateLockedByPromise } from '@components/helpers'
 import { useToasts } from '@components/shared/toast/ToastProvider'
@@ -14,7 +15,7 @@ import {
   CheckboxList,
   CheckboxListChildProps,
 } from '@components/shared'
-import { theme } from '../../../shared/Theme/theme'
+import { theme } from '@components/shared/Theme/theme'
 
 const isStageAttributed = (sectionStages: Stage[], stageId: string) => {
   return Boolean(

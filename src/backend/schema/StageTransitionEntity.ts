@@ -1,12 +1,16 @@
 import { v4 as uuid } from 'uuid'
-import { Stage, Ctx, StageTransition } from '@models'
+
+import { Stage } from '@models/Stage'
+import { StageTransition } from '@models/StageTransition'
+import { Ctx } from '@models/Ctx'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+
 import {
   LoupeRealmResponseCallback,
   renderSuccess,
   renderError,
 } from '@models/ipc'
-
-import { StageEntity } from '..'
 
 export interface StageTransitionTemplate {
   id: string
@@ -97,7 +101,11 @@ export class StageTransitionEntity {
     }
   }
 
-  public static syncCreate(realm: Realm, ctx: Ctx, transition: StageTransition) {
+  public static syncCreate(
+    realm: Realm,
+    ctx: Ctx,
+    transition: StageTransition
+  ) {
     return this._create(realm, ctx, transition)
   }
 

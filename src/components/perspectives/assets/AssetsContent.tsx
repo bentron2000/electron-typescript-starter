@@ -14,7 +14,7 @@ import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { useGridSelect } from '@components/helpers/useGridSelect'
-import { MediaState } from '@models'
+import { MediaState } from '@models/MediaState'
 import { MediaStateFilter } from '@redux/state/AssetPerspective/AssetFilterPart'
 
 const AssetButton = styled.button`

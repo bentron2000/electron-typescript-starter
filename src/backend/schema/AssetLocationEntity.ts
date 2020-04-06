@@ -1,4 +1,5 @@
-import { RepositoryEntity, AssetEntity } from '..'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
+import { AssetEntity } from '@backend/schema/AssetEntity'
 import { AssetLocation } from '@models/AssetLocation'
 
 export class AssetLocationEntity {

@@ -1,14 +1,12 @@
-import {
-  TreeInstance,
-  PendingAsset,
-  MediaState,
-  MediaItem,
-  TreeDefinition,
-  Stage,
-} from '@models'
+import { Stage } from '@models/Stage'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance, tIreduce } from '@models/TreeInstance'
+import { MediaItem } from '@models/MediaItem'
+import { MediaState } from '@models/MediaState'
+import { PendingAsset } from '@models/PendingAsset'
+
 // import { fileNamepredicates } from './FileNamePredicates'
 import { store } from '@redux/store'
-import { tIreduce } from '@models/TreeInstance'
 
 // ******************************
 // Auto Matching Results

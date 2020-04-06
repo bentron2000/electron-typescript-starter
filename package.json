@@ -143,11 +143,13 @@
     "@components": "./src/components",
     "@helpers": "./src/helpers",
     "@utils": "./src/utils",
-    "@static": "./static"
+    "@static": "./static",
+    "@css": "./src/css"
   },
   "dependencies": {
     "@types/mocha": "7.0.2",
     "contentful": "^7.14.0",
+    "dist-exiftool": "^10.53.0",
     "easy-peasy": "3.3.0",
     "electron-store": "^2.0.0",
     "electron-updater": "4.0.6",
@@ -160,6 +162,7 @@
     "loupe-instance-tree": "git+https://github.com/jakeranallo/loupe-instance-tree-theme.git",
     "module-alias": "^2.2.2",
     "moment": "^2.24.0",
+    "node-exiftool": "^2.3.0",
     "node-sass": "4.13.1",
     "pluralize": "^8.0.0",
     "polished": "^3.5.1",
@@ -172,7 +175,7 @@
     "react-modal": "^3.11.2",
     "react-realm-context": "^0.3.0",
     "react-router-dom": "5.1.2",
-    "react-sortable-tree": "^2.7.1",
+    "react-sortable-tree": "2.6.2",
     "realm": "3.7.0-alpha.2",
     "redux-devtools-extension": "^2.13.8",
     "sharp": "^0.25.2",

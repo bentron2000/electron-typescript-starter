@@ -1,15 +1,15 @@
 import * as React from 'react'
 import pluralize from 'pluralize'
 
-import { useStoreState, useStoreActions } from '@redux/store'
-import { Section } from '@models'
+import { Section, buildSection } from '@models/Section'
 import { LoupeRealmErrorResponse } from '@models/ipc'
 
-import { Box, Heading, TreeBreadcrumb } from '../../shared'
-import { theme } from '../../shared/Theme/theme'
+import { Box, Heading, TreeBreadcrumb } from '@components/shared'
+import { useToasts } from '@components/shared/toast/ToastProvider'
+import { theme } from '@components/shared/Theme/theme'
 import { DisplaySection, BriefAddContentPanel } from '.'
-import { useToasts } from '../../shared/toast/ToastProvider'
-import { buildSection } from '@models/Section'
+
+import { useStoreState, useStoreActions } from '@redux/store'
 import { BriefFilter } from '@redux/state'
 
 const CreateToastContent = ({ stagesCount }: { stagesCount: number }) => {

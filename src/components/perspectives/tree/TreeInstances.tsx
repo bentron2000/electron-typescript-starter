@@ -2,11 +2,12 @@ import * as React from 'react'
 import SortableTree, { ThemeProps, TreeItem } from 'react-sortable-tree'
 import * as InstanceTheme from 'loupe-asset-tree'
 
-import { TreeInstance, TreeDefinition } from '@models'
+import { TreeInstance } from '@models/TreeInstance'
+import { TreeDefinition } from '@models/TreeDefinition'
 import { TITreeItem, tiToTreeItemV2 } from '@components/helpers/treeHelpers'
 
-import { Text, Flex, Button, InlineEdit2 } from '../../shared'
-import { theme } from '../../shared/Theme/theme'
+import { Text, Flex, Button, InlineEdit2 } from '@components/shared'
+import { theme } from '@components/shared/Theme/theme'
 
 import { TreeNode, EditableTreeNode, AddTreeNode } from './TreeNode'
 

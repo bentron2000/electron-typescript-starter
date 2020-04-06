@@ -11,9 +11,10 @@ export const SplashWindow: IWindow = {
     width: 500,
     height: 300,
     frame: false,
+    showDevTools: false,
   }),
   getComponent: () =>
-    import('../../../components/WindowRoots/SplashWindow').then(
+    import('@components/WindowRoots/SplashWindow').then(
       // TODO: Fix the props for this to include a type
       m => m.Splash as any
     ),

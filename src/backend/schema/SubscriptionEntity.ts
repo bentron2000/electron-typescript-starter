@@ -1,11 +1,17 @@
-import { Subscription, Ctx } from '@models'
-import { RepositoryEntity, StageEntity, SeatEntity } from '..'
+import { v4 as uuid } from 'uuid'
+
+import { Subscription } from '@models/Subscription'
+import { Ctx } from '@models/Ctx'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+import { SeatEntity } from '@backend/schema/SeatEntity'
+import { RepositoryEntity } from '@backend/schema/RepositoryEntity'
+
 import {
   LoupeRealmResponseCallback,
   renderError,
   renderSuccess,
 } from '@models/ipc'
-import { v4 as uuid } from 'uuid'
 
 export class SubscriptionEntity {
   public static schema: Realm.ObjectSchema = {

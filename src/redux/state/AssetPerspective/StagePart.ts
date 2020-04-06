@@ -6,7 +6,7 @@ import {
   actionOn,
   ActionOn,
 } from 'easy-peasy'
-import { Stage } from '@models'
+import { Stage } from '@models/Stage'
 import { LoupeModel } from '..'
 
 export interface StagePart {

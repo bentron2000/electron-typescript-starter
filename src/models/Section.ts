@@ -1,5 +1,8 @@
-import { Element, Ctx } from '.'
 import { ipcRenderer, Event } from 'electron'
+
+import { Element } from '@models/Element'
+import { Ctx } from '@models/Ctx'
+
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
 export interface Section {

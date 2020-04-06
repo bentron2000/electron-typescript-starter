@@ -9,19 +9,16 @@ import {
   ThunkOn,
 } from 'easy-peasy'
 
-import {
-  User,
-  Seat,
-  Team,
-  Project,
-  ProjectPermission,
-  Repository,
-} from '@models'
-import { userProjects } from '@models/User'
-import { ipcSubscribe, ipcCreate, ipcGet } from '@redux/ipc'
-import { selectRepositoryLocation } from '@models/Repository'
-import { LoupeModel } from './'
+import { Project } from '@models/Project'
+import { Seat } from '@models/Seat'
+import { Team } from '@models/Team'
+import { User, userProjects } from '@models/User'
+import { ProjectPermission } from '@models/ProjectPermission'
+import { Repository, selectRepositoryLocation } from '@models/Repository'
+
 import { LoupeRealmResponse } from '@models/ipc'
+import { ipcSubscribe, ipcCreate, ipcGet } from '@redux/ipc'
+import { LoupeModel } from './'
 
 const DEFAULT_REPOSITORY_LOCATION = '~/Documents/Loupe'
 

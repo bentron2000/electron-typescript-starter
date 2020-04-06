@@ -17,12 +17,14 @@ export interface IWindow {
 
 import { SplashWindow } from './SplashWindow'
 import { UIWindow } from './UIWindow'
-// import { DBWindow } from './DBWindow'
-// import { APMWindow } from './APMWindow'
+import { UIWindowOld } from './UIWindowOld'
+import { DBWindow } from './DBWindow'
+import { APMWindow } from './APMWindow'
 
 export interface IWindowConstructorOptions
   extends Partial<Electron.BrowserWindowConstructorOptions> {
   maximize?: boolean
+  showDevTools?: boolean
 }
 
 export function getWindowClass(type: WindowType): IWindow {
@@ -32,10 +34,12 @@ export function getWindowClass(type: WindowType): IWindow {
     return SplashWindow
   } else if (type === 'ui-window') {
     return UIWindow
-    // } else if (type === 'db-window') {
-    //   return DBWindow
-    // } else if (type === 'apm-window') {
-    //   return APMWindow
+  } else if (type === 'uio-window') {
+    return UIWindowOld
+  } else if (type === 'apm-window') {
+    return APMWindow
+  } else if (type === 'db-window') {
+    return DBWindow
   } else {
     throw new Error(`Unexpected window type: ${type}`)
   }

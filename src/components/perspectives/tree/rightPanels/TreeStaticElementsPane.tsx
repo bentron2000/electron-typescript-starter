@@ -2,17 +2,24 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { all, any } from 'ramda'
 
-import { useStateLockedByPromise } from '@components/helpers'
-import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
-import { Section, Element, TreeInstance, TreeDefinition, Stage } from '@models'
-import { numStaticElements } from '@models/Section'
-import { tIgetName } from '@models/TreeInstance'
-import { tDfindById } from '@models/TreeDefinition'
-import { createTiRelevance, relators, hasTiRelevance } from '@models/Element'
 import { ElementRelevance } from '@redux/state'
 
-import { useToasts } from '../../../shared/toast/ToastProvider'
-import { theme } from '../../../shared/Theme/theme'
+import { Stage } from '@models/Stage'
+import { Section, numStaticElements } from '@models/Section'
+import {
+  Element,
+  createTiRelevance,
+  relators,
+  hasTiRelevance,
+} from '@models/Element'
+import { TreeDefinition, tDfindById } from '@models/TreeDefinition'
+import { TreeInstance, tIgetName } from '@models/TreeInstance'
+
+import { LoupeRealmResponse, LoupeRealmErrorResponse } from '@models/ipc'
+
+import { useStateLockedByPromise } from '@components/helpers'
+import { useToasts } from '@components/shared/toast/ToastProvider'
+import { theme } from '@components/shared/Theme/theme'
 import {
   Text,
   Input,
@@ -25,7 +32,7 @@ import {
   BoxCheckbox,
   CheckboxList,
   CheckboxListChildProps,
-} from '../../../shared'
+} from '@components/shared'
 
 const ElementInheritanceLabel = styled.a`
   text-decoration: underline;

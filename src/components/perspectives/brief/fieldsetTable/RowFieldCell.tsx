@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useStoreActions } from '@redux/store'
 import { LoupeRealmErrorResponse } from '@models/ipc'
-import { FieldValue } from '@models'
+import { FieldValue } from '@models/FieldValue'
 import { Box, Flex, Text, Input, theme, useToasts } from '@components/shared'
 import { ICell } from './RowRenderer'
 

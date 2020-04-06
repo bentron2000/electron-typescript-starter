@@ -1,27 +1,30 @@
-import { Event, ipcRenderer } from 'electron'
-import {
-  UserEntity,
-  ProjectEntity,
-  SectionEntity,
-  StageEntity,
-  TreeDefinitionEntity,
-  PendingAssetEntity,
-  ElementEntity,
-  TemplateEntity,
-  fetchByTypeNameId,
-  newModelInstanceFromResults,
-} from '@backend'
-import * as loupeEntities from '@backend'
-import { Ctx } from '@models'
+import { IpcRendererEvent, ipcRenderer } from 'electron'
+
+import { Ctx } from '@models/Ctx'
 import { LoupeRealmResponse, ipcReply } from '@models/ipc'
+
+import { StageEntity } from '@backend/schema/StageEntity'
+import { UserEntity } from '@backend/schema/UserEntity'
+import { ProjectEntity } from '@backend/schema/ProjectEntity'
+import { SectionEntity } from '@backend/schema/SectionEntity'
+import { ElementEntity } from '@backend/schema/ElementEntity'
+import { TreeDefinitionEntity } from '@backend/schema/TreeDefinitionEntity'
+import { PendingAssetEntity } from '@backend/schema/PendingAssetEntity'
+import { TemplateEntity } from '@backend/schema/TemplateEntity'
 import {
   autoLoadTemplates,
   autoLoadNewProjects,
 } from '@backend/mockdata/autoLoad'
+import {
+  newModelInstanceFromResults,
+  fetchByTypeNameId,
+} from '@backend/helpers/realmHelpers'
+
+import * as loupeEntities from '@backend'
 
 export const registerGenericListeners = (realm: Realm) => {
   const subscribeCallBack = async (
-    event: Event,
+    event: IpcRendererEvent,
     _ctx: Ctx,
     entityType: string,
     id: string
@@ -54,7 +57,7 @@ export const registerGenericListeners = (realm: Realm) => {
 
   // generic get action Listener
   const getCallBack = async (
-    event: Event,
+    event: IpcRendererEvent,
     ctx: Ctx,
     id: string,
     type: string,
@@ -69,7 +72,7 @@ export const registerGenericListeners = (realm: Realm) => {
 
   // generic update action Listener
   const updateCallBack = async (
-    event: Event,
+    event: IpcRendererEvent,
     ctx: Ctx,
     payload: any,
     type: string,
@@ -90,7 +93,7 @@ export const registerGenericListeners = (realm: Realm) => {
 
   // generic create action Listener
   const createCallBack = async (
-    event: Event,
+    event: IpcRendererEvent,
     ctx: Ctx,
     payload: any,
     type: string,
@@ -111,7 +114,7 @@ export const registerGenericListeners = (realm: Realm) => {
 
   // generic delete action Listener
   const deleteCallBack = async (
-    event: Event,
+    event: IpcRendererEvent,
     ctx: Ctx,
     id: string,
     type: string,
@@ -151,19 +154,19 @@ export const dbIPCListeners = (uiWindowId: number) => {
 }
 
 export const dbProcess = () => {
-  const dbReady = () => {
-    // Tell main that the realm process is ready so that it can pass
-    // the windowId to the UI Renderer process
-    ipcRenderer.send('DB-ready')
-  }
-
   // Register all the realm listeners here...
-  ipcRenderer.on('UI_ready', (event: Event) => {
+  ipcRenderer.on('UI_ready', (event: IpcRendererEvent) => {
     // incomplete types for IpcRendererEvent (https://electronjs.org/docs/api/structures/ipc-renderer-event)
     // @ts-ignore
     const uiWindowId = event.senderId
     dbIPCListeners(uiWindowId)
   })
+
+  const dbReady = () => {
+    // Tell main that the realm process is ready so that it can pass
+    // the windowId to the UI Renderer process
+    ipcRenderer.send('DB-ready')
+  }
 
   dbReady()
 }

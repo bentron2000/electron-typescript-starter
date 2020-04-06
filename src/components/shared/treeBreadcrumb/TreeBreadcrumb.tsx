@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { theme } from '../Theme/theme'
+import { theme } from '@components/shared/Theme/theme'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,9 +8,9 @@ import {
   IBreadcrumbItem,
   IBreadcrumbItemContent,
   LeftDivider,
-} from '..'
-import { TreeDefinition, TreeInstance } from '@models'
-import { tIgetBranch, tIfindById } from '@models/TreeInstance'
+} from '@components/shared'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance, tIgetBranch, tIfindById } from '@models/TreeInstance'
 
 const selectedBcColor = theme.yellow
 const bcHoverColor = '#313846'

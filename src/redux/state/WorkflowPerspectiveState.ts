@@ -10,6 +10,11 @@ import {
 } from 'easy-peasy'
 import * as R from 'ramda'
 
+import { Stage, UpdateStageWithId, buildStage } from '@models/Stage'
+import { StageTransition } from '@models/StageTransition'
+import { Subscription } from '@models/Subscription'
+import { SaveTemplatePayload } from '@models/Template'
+
 import {
   LoupeRealmResponse,
   LoupeRealmErrorResponse,
@@ -19,14 +24,6 @@ import { ipcUpdate, ipcDelete, ipcCreate } from '@redux/ipc'
 
 import { LoupeModel } from '@redux/state'
 import { DiagramConfig } from '@components/perspectives/workflow/Diagram'
-import {
-  StageTransition,
-  Stage,
-  UpdateStageWithId,
-  SaveTemplatePayload,
-  Subscription,
-} from '@models'
-import { buildStage } from '@models/Stage'
 
 interface StagePart {
   current: Computed<StagePart, Stage | undefined, LoupeModel>

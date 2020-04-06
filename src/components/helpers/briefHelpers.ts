@@ -1,6 +1,9 @@
-import { BriefFilter } from '@redux/state'
-import { TreeDefinition, TreeInstance, Element, Section } from '@models'
 import { intersection } from 'ramda'
+import { BriefFilter } from '@redux/state'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance } from '@models/TreeInstance'
+import { Element } from '@models/Element'
+import { Section } from '@models/Section'
 import { tIreduce } from '@models/TreeInstance'
 import { buildSection } from '@models/Section'
 
@@ -32,7 +35,10 @@ export const briefFilter = (
   const filterByTree = (sections: Section[]): Section[] => {
     const tdTiLists = filter.treeFilter.flatMap(id => {
       const getTdTIList = (acc: string[][], node: TreeInstance): string[][] => {
-        const newAcc = [[...acc[0], node.id], [...acc[1], node.definitionId]]
+        const newAcc = [
+          [...acc[0], node.id],
+          [...acc[1], node.definitionId],
+        ]
         return node.id === id // isTarget
           ? newAcc
           : node.children.length > 0 // hasChildren

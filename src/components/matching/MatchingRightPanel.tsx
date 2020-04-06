@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 import { useStoreActions } from '@redux/store'
 import { Match, Matches } from '@models/Match'
-import { TreeInstance, TreeDefinition, PendingAsset } from '@models'
+import { TreeInstance } from '@models/TreeInstance'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { PendingAsset } from '@models/PendingAsset'
 import { tiToFlatTreeItems } from '@components/helpers/treeHelpers'
 
 import { theme } from '../shared/Theme/theme'

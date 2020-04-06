@@ -1,4 +1,4 @@
-import { Project } from './'
+import { Project } from '@models/Project'
 
 export interface ProjectPermission {
   readonly id: string

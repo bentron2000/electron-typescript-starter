@@ -1,7 +1,7 @@
-import { Stage } from '@models'
-import { ipcRenderer } from 'electron'
-import { LoupeRealmResponse, renderError } from './ipc'
 import { v4 as uuid } from 'uuid'
+import { ipcRenderer } from 'electron'
+import { Stage } from '@models/Stage'
+import { LoupeRealmResponse, renderError } from '@models/ipc'
 import { ipcToDb } from '@redux/state/helpers/ipcDbWindowHelper'
 
 export interface PendingAsset {
@@ -43,6 +43,7 @@ export const clearUnmatchedPendingAssets = (stage: Stage) => {
 export const importFiles = (
   stage: Stage | undefined
 ): Promise<LoupeRealmResponse> => {
+  console.log('TRIGGERING IMPORT PROCESS')
   return new Promise((resolve, reject) => {
     if (!stage) {
       console.log('uh oh - no stage supplied')
@@ -65,6 +66,7 @@ export const importFiles = (
     }
 
     const responseChannel = uuid()
+    console.log('SENDING START INGEST MESSAGE OVER IPC')
     ipcRenderer.send('select-files-for-ingestion', stage, repo, responseChannel)
     ipcRenderer.once(responseChannel, handleResponse)
   })

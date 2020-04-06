@@ -2,15 +2,14 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import {
-  Element,
-  TreeInstance,
-  TreeDefinition,
-  FieldDefinition,
-  FieldValue,
-  Project,
-  ElementData,
-} from '@models'
+import { Project } from '@models/Project'
+import { Element } from '@models/Element'
+import { TreeDefinition } from '@models/TreeDefinition'
+import { TreeInstance } from '@models/TreeInstance'
+import { ElementData } from '@models/ElementData'
+import { FieldDefinition } from '@models/FieldDefinition'
+import { FieldValue } from '@models/FieldValue'
+
 import {
   Flex,
   Text,
@@ -20,7 +19,7 @@ import {
   RelevanceLabel,
   Subsection,
 } from '@components/shared'
-import { theme } from '../../../shared/Theme/theme'
+import { theme } from '@components/shared/Theme/theme'
 import { relatedElementData } from '@models/Element'
 
 interface ITreeFieldsetPane {

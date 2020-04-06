@@ -1,8 +1,11 @@
 import * as Realm from 'realm'
 import { v4 as uuid } from 'uuid'
 import { path } from 'ramda'
-import { MediaState, Ctx } from '@models'
-import { MediaItemEntity, StageEntity, AssetEntity } from '..'
+import { Ctx } from '@models/Ctx'
+import { MediaState } from '@models/MediaState'
+import { MediaItemEntity } from '@backend/schema/MediaItemEntity'
+import { StageEntity } from '@backend/schema/StageEntity'
+import { AssetEntity } from '@backend/schema/AssetEntity'
 
 export class MediaStateEntity {
   public static schema: Realm.ObjectSchema = {

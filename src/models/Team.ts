@@ -1,4 +1,4 @@
-import { TemplateInfo } from './Template'
+import { TemplateInfo } from '@models/Template'
 
 export interface Team {
   readonly id: string
