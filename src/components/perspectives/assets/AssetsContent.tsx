@@ -122,7 +122,8 @@ export const AssetsContent = () => {
                   render={({ history }) => (
                     <AssetButton
                       onClick={event => handleSelect(ms, event)}
-                      onDoubleClick={() => {
+                      onDoubleClick={event => {
+                        handleSelect(ms, event)
                         if (project) {
                           history.push(`/project/${project.id}/single-asset`)
                           updatePerspectiveData({

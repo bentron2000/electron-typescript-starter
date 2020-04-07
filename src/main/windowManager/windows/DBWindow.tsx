@@ -11,7 +11,7 @@ export const DBWindow: IWindow = {
       title: 'DBWindow',
       width: 900,
       height: 600,
-      showDevTools: false,
+      showDevTools: true,
     }
   },
   getComponent: () =>

@@ -6,15 +6,7 @@ import { renderSuccess, renderError } from '@models/ipc'
 import * as path from 'path'
 import * as fs from 'fs'
 
-console.log('MAIN LISTENER CODE LOADING')
-
 export const mainIPCListeners = () => {
-  console.log('MAIN LISTENER CODE RUNNING')
-  // Logger utility for main process
-  ipcMain.on('main-log', (_event: IpcMainEvent, arg: string) => {
-    console.log('MAIN Log', arg)
-  })
-
   // Asset Import Selection Dialog
   ipcMain.on(
     'select-files-for-ingestion',

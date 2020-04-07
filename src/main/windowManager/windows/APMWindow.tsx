@@ -1,5 +1,5 @@
 import { IWindow } from './Window'
-// import { apm } from '@utils/APMProcess/apmWindowListeners'
+
 // tslint:disable-next-line:no-empty-interface
 export interface IAPMWindowProps {
   // Tumbleweed
@@ -11,7 +11,7 @@ export const APMWindow: IWindow = {
       title: 'APMWindow',
       width: 900,
       height: 600,
-      showDevTools: false,
+      showDevTools: true,
     }
   },
   getComponent: () =>

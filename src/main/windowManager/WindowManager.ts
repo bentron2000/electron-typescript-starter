@@ -90,7 +90,7 @@ export class WindowManager {
       title: 'Loupe',
       width: 800,
       height: 600,
-      vibrancy: 'light',
+      // vibrancy: 'light',
       show: false,
       // This should be the same as the value of the SCSS variable $body-bg
       backgroundColor: '#f5f5f9',
@@ -105,9 +105,9 @@ export class WindowManager {
         nodeIntegration: true,
         // Load Sentry as a preload in production - this doesn't work in development because the
         // sentry.js is not emitted to the build folder.
-        preload: isDevelopment
-          ? undefined
-          : path.resolve(__dirname, './sentry.bundle.js'),
+        // preload: isDevelopment
+        //   ? undefined
+        //   : path.resolve(__dirname, './sentry.bundle.js'),
       },
     }
 
@@ -149,9 +149,7 @@ export class WindowManager {
         window.maximize()
       })
     }
-    window.webContents.openDevTools({
-      mode: 'detach',
-    })
+
     // Open up the dev tools, if not in production mode
     // if (process.env.REALM_STUDIO_DEV_TOOLS) {
     if (isDevelopment && windowOptions.showDevTools) {

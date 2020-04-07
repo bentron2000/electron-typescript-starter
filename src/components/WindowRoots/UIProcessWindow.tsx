@@ -7,16 +7,6 @@ import { App } from '@components/App'
 
 rendererIPCListeners()
 
-// export const UIProcessWindow = () => {
-//   return (
-//     <Router>
-//       <StoreProvider store={store}>
-//         <App />
-//       </StoreProvider>
-//     </Router>
-//   )
-// }
-
 export class UIProcessWindow extends Component {
   public render() {
     return (

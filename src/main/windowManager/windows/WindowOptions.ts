@@ -1,13 +1,8 @@
 import qs from 'querystring'
 
-import { ISplashWindowProps, IUIWindowProps, WindowProps } from './WindowProps'
+import { IUIWindowProps, WindowProps } from './WindowProps'
 
-export type WindowType =
-  | 'splash'
-  | 'ui-window'
-  | 'db-window'
-  | 'apm-window'
-  | 'uio-window' // to delete
+export type WindowType = 'ui-window' | 'db-window' | 'apm-window'
 
 /**
  * A WindowOptions object contains the type of window and the props getting passed to its UI component
@@ -17,19 +12,8 @@ interface IWindowOptions {
   props: WindowProps
 }
 
-export interface ISplashWindowOptions extends IWindowOptions {
-  type: 'splash'
-  props: ISplashWindowProps
-}
-
 export interface IUIWindowOptions extends IWindowOptions {
   type: 'ui-window'
-  props: IUIWindowProps
-}
-
-// old window delete once working
-export interface IUIOWindowOptions extends IWindowOptions {
-  type: 'uio-window'
   props: IUIWindowProps
 }
 
@@ -44,11 +28,9 @@ export interface IAPMWindowOptions extends IWindowOptions {
 }
 
 export type WindowOptions =
-  | ISplashWindowOptions
   | IUIWindowOptions
   | IDBWindowOptions
   | IAPMWindowOptions
-  | IUIOWindowOptions // to delete
 
 export function getWindowOptions(): WindowOptions {
   // Strip away the "?" of the location.search
@@ -62,12 +44,6 @@ export function getWindowOptions(): WindowOptions {
 }
 
 export const WindowEntryHtml = {
-  splash: {
-    // tslint:disable-next-line:no-var-requires no-require-imports
-    development: require('@static/index.development.html'),
-    // tslint:disable-next-line:no-var-requires no-require-imports
-    production: require('@static/index.html'),
-  },
   'ui-window': {
     // tslint:disable-next-line:no-var-requires no-require-imports
     development: require('@static/ui.development.html'),
@@ -81,12 +57,6 @@ export const WindowEntryHtml = {
     production: require('@static/index.html'),
   },
   'apm-window': {
-    // tslint:disable-next-line:no-var-requires no-require-imports
-    development: require('@static/index.development.html'),
-    // tslint:disable-next-line:no-var-requires no-require-imports
-    production: require('@static/index.html'),
-  },
-  'uio-window': {
     // tslint:disable-next-line:no-var-requires no-require-imports
     development: require('@static/index.development.html'),
     // tslint:disable-next-line:no-var-requires no-require-imports

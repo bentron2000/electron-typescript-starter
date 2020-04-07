@@ -2,8 +2,6 @@ import { ipcMain, IpcMainEvent } from 'electron'
 import { Stage } from '@models/Stage'
 import { Repository } from '@models/Repository'
 
-console.log('WHERE ARE WE RUNNING THIS??')
-
 export const apmListeners = () => {
   // Background Processing
   type Task = [string, any]
@@ -27,13 +25,8 @@ export const apmListeners = () => {
 
   // Add background processes to the available array
   ipcMain.on('ready', (event: IpcMainEvent, _arg: string) => {
-    console.log('ADDING BACKGROUND APM TO AVAILABLE ARRAY')
     available.push(event.sender)
     performTask()
-  })
-
-  ipcMain.on('apm-log', (_event: IpcMainEvent, arg: string) => {
-    console.log('APM Log', arg)
   })
 
   ipcMain.on(

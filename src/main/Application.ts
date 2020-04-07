@@ -61,48 +61,6 @@ export class Application {
   // WINDOW DECLARATIONS
   ////////////////////////////////////////////
 
-  // SPLASH WINDOW
-  public showSplash(): Promise<void> {
-    const { window, existing } = this.windowManager.createWindow({
-      type: 'splash',
-      props: {},
-    })
-
-    if (existing) {
-      window.focus()
-      return Promise.resolve()
-    } else {
-      return new Promise(resolve => {
-        window.once('ready-to-show', () => {
-          window.show()
-          resolve()
-        })
-      })
-    }
-  }
-
-  // UI WINDOW OLD - TO DELETE
-  public showOldUIWindow(): Promise<void> {
-    const { window, existing } = this.windowManager.createWindow({
-      type: 'uio-window',
-      props: {},
-    })
-
-    if (existing) {
-      window.focus()
-      return Promise.resolve()
-    } else {
-      return new Promise(resolve => {
-        // Save this for later
-        // Show the window, the first time its ready-to-show
-        window.once('ready-to-show', () => {
-          window.show()
-          resolve()
-        })
-      })
-    }
-  }
-
   // UI WINDOW
   public showUIWindow(): Promise<void> {
     const { window, existing } = this.windowManager.createWindow({
@@ -188,12 +146,9 @@ export class Application {
   private onReady = async () => {
     this.setDefaultMenu()
     if (this.windowManager.windows.length === 0) {
-      // Wait for the greeting window to show - if no other windows are open
-      await this.showSplash()
+      await this.showDBWindow()
       mainIPCListeners()
       apmListeners()
-      // await this.showOldUIWindow()
-      this.showDBWindow()
       this.showUIWindow()
       this.showAPMWindow()
     }
@@ -202,7 +157,7 @@ export class Application {
 
   private onActivate = () => {
     if (this.windowManager.windows.length === 0) {
-      // this.showSplash()
+      this.showUIWindow()
     }
   }
 
@@ -247,7 +202,7 @@ export class Application {
     workingDirectory: string
   ) => {
     this.processArguments(argv)
-    await this.showSplash()
+    await this.showUIWindow()
     this.performDelayedTasks()
   }
 
@@ -258,7 +213,6 @@ export class Application {
   }
 
   private processArguments(argv: string[]) {
-    // this.delayedRealmOpens = argv.filter(arg => arg.endsWith('.realm'))
     this.delayedUrlOpens = argv.filter(arg =>
       arg.startsWith(`${LOUPE_PROTOCOL}://`)
     )

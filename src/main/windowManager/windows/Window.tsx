@@ -15,9 +15,7 @@ export interface IWindow {
   getTrackedProperties(props: WindowProps): { [key: string]: string }
 }
 
-import { SplashWindow } from './SplashWindow'
 import { UIWindow } from './UIWindow'
-import { UIWindowOld } from './UIWindowOld'
 import { DBWindow } from './DBWindow'
 import { APMWindow } from './APMWindow'
 
@@ -30,12 +28,8 @@ export interface IWindowConstructorOptions
 export function getWindowClass(type: WindowType): IWindow {
   // We're using calls to require here, to prevent loading anything that does not
   // relate to the specific window being loaded.
-  if (type === 'splash') {
-    return SplashWindow
-  } else if (type === 'ui-window') {
+  if (type === 'ui-window') {
     return UIWindow
-  } else if (type === 'uio-window') {
-    return UIWindowOld
   } else if (type === 'apm-window') {
     return APMWindow
   } else if (type === 'db-window') {
