@@ -1,7 +1,6 @@
 // tslint:disable-next-line
 require('module-alias/register')
 
-import electron from 'electron'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -57,14 +56,14 @@ if (!isDevelopment) {
 }
 
 // Using process.nextTick - as requiring realm blocks rendering
-process.nextTick(() => {
-  // tslint:disable-next-line:no-var-requires no-require-imports
-  const Realm = require('realm')
-  // If sync is enabled on Realm - make it less verbose
-  if (Realm.Sync) {
-    Realm.Sync.setLogLevel(process.env.REALM_LOG_LEVEL || 'error')
-    Realm.Sync.setUserAgent(
-      `Loupe ${electron.remote.app.getVersion() || 'unknown'}`
-    )
-  }
-})
+// process.nextTick(() => {
+//   // tslint:disable-next-line:no-var-requires no-require-imports
+//   const Realm = require('realm')
+//   // If sync is enabled on Realm - make it less verbose
+//   if (Realm.Sync) {
+//     Realm.Sync.setLogLevel(process.env.REALM_LOG_LEVEL || 'error')
+//     Realm.Sync.setUserAgent(
+//       `Loupe ${electron.remote.app.getVersion() || 'unknown'}`
+//     )
+//   }
+// })

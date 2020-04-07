@@ -9,7 +9,6 @@ process.env.REALM_DISABLE_ANALYTICS = 'true'
 import './utils/Electron/process-directories'
 
 import { app } from 'electron'
-
 import { Application } from './main/Application'
 
 process.on('uncaughtException', e => {
@@ -25,21 +24,6 @@ if (isDevelopment) {
   // be used in a block like this.
   // tslint:disable-next-line:no-var-requires no-require-imports
   require('source-map-support').install()
-
-  const {
-    default: installExtension,
-    REACT_DEVELOPER_TOOLS,
-    REDUX_DEVTOOLS,
-    // tslint:disable-next-line:no-var-requires no-require-imports
-  } = require('electron-devtools-installer')
-
-  installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name: string) => console.log(`Added Extension:  ${name}`))
-    .catch((err: string) => console.log('An error occurred: ', err))
-
-  installExtension(REDUX_DEVTOOLS)
-    .then((name: string) => console.log(`Added Extension:  ${name}`))
-    .catch((err: string) => console.log('An error occurred: ', err))
 }
 
 // Declare some additions to the global variable so we can store windows
@@ -77,6 +61,23 @@ app.setAboutPanelOptions({
 //////////////////////////////
 app.on('will-quit', () => {
   Application.sharedApplication.destroy()
+})
+
+app.whenReady().then(() => {
+  const {
+    default: installExtension,
+    REACT_DEVELOPER_TOOLS,
+    REDUX_DEVTOOLS,
+    // tslint:disable-next-line:no-var-requires no-require-imports
+  } = require('electron-devtools-installer')
+
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name: string) => console.log(`Added Extension:  ${name}`))
+    .catch((err: string) => console.log('An error occurred: ', err))
+
+  installExtension(REDUX_DEVTOOLS)
+    .then((name: string) => console.log(`Added Extension:  ${name}`))
+    .catch((err: string) => console.log('An error occurred: ', err))
 })
 
 // OLD REALM TESTING THING
