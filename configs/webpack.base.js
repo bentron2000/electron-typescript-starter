@@ -20,7 +20,6 @@ module.exports = (env, argv) => {
           'electron-devtools-installer',
           /svg-baker-runtime(\/.*)?/,
           /svg-sprite-loader(\/.*)?/,
-          'dist-exiftool',
         ],
       }),
     ],

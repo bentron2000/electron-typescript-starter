@@ -35,7 +35,8 @@
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "extraResources": "resources/exiftool/exiftool/**/*"
     },
     "dmg": {
       "iconSize": 90,
@@ -64,7 +65,8 @@
         "portable",
         "zip"
       ],
-      "icon": "resources/icon.ico"
+      "icon": "resources/icon.ico",
+      "extraResources": "resources/exiftool/exiftoolwin/**/*"
     },
     "nsis": {
       "installerIcon": "resources/icon.ico",

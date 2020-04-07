@@ -77,7 +77,7 @@ export const login = async (
 ): Promise<[Realm, boolean]> => {
   let mockDatawasInserted = false
   if (!userObj.sync) {
-    // Local db only (offline)
+    // Local db only (offline), Note that this will be relative to the Application Support folder for the db renderer window
     const realm = new Realm({ schema, path: './src/backend/db/loupe.realm' })
     const stuff = await realm.objects('User')
     if (stuff.length === 0) {

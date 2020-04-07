@@ -11,23 +11,22 @@ import { Repository } from '@models/Repository'
 import { LoupeRealmResponse, renderSuccess, renderError } from '@models/ipc'
 
 import { v4 as uuid } from 'uuid'
-import { previewGen } from '@utils/APMProcess/previewGenerators'
-import { thumbGen } from '@utils/APMProcess/thumbnailGenerators'
+import { thumbGen, previewGen } from '@utils/APMProcess/imageGenerators'
 import { ipcRenderer } from 'electron'
 import { generateHash } from '@utils/Helpers/fsHelpers'
 
+// Some fuckery required to get exiftool to run in dev vs packaged app.
+// Note that exiftool is manually exported into the package and differentated by platform
 const isDevelopment = process.env.NODE_ENV === 'development'
 
-let exifExec: any
-if (!isDevelopment && process.platform === 'darwin') {
-  console.log('Adjusting exiftool location for MacOS App from ')
-  console.log('EXIFTOOL OBJ', exiftoolBin)
-  console.log('EXIFTOOL default', exiftoolBin.default)
-  exifExec = exiftoolBin.default.replace('app.asar', 'app.asar.unpacked')
-  console.log('EXIFTOOL default if replaced', exifExec)
-} else {
-  exifExec = exiftoolBin
-}
+const exiftoolFolderAndFile =
+  process.platform === 'win32'
+    ? 'resources/exiftool/exiftoolwin/exiftool.exe'
+    : 'resources/exiftool/exiftool/exiftool'
+
+const exiftoolPath = isDevelopment
+  ? exiftoolBin
+  : path.resolve(__dirname, '../..', exiftoolFolderAndFile)
 
 // const DEFAULT_REPO_LOCATION = `${__dirname}/../../../../repos`
 
@@ -150,8 +149,8 @@ export const ingestAssets = (
 ) => {
   return new Promise<LoupeRealmResponse>((resolve, reject) => {
     const sendInfoBack = sendInfoBackFunc(dbWindowId)
-    const ep = new exiftool.ExiftoolProcess(exifExec)
-    console.log('INSIDE THE INGEST FUNC')
+
+    const ep = new exiftool.ExiftoolProcess(exiftoolPath)
     ep.open().then(() => {
       createPendingAssetFromPath(fileName, stage.id)
         .then(res => sendInfoBack(res))
