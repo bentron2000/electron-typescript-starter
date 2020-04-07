@@ -17,6 +17,7 @@ import { generateHash } from '@utils/Helpers/fsHelpers'
 
 // Some fuckery required to get exiftool to run in dev vs packaged app.
 // Note that exiftool is manually exported into the package and differentated by platform
+// https://stackoverflow.com/questions/56242705/exiftool-vendored-doesnt-return-when-used-in-an-electron-app-on-mac
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const exiftoolFolderAndFile =
